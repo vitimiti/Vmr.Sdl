@@ -1,1 +1,3 @@
-﻿<Solution />
+﻿<Solution>
+  <Project Path="Vmr.Sdl\Vmr.Sdl.csproj" Type="Classic C#" />
+</Solution>
