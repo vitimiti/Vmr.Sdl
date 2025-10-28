@@ -11,6 +11,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Versioning;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Vmr.Sdl.NativeImports;
 
 namespace Vmr.Sdl.Logging;
 
@@ -40,8 +41,21 @@ public sealed class SdlLoggerProvider : ILoggerProvider
     /// <inheritdoc/>
     public void Dispose()
     {
+        ReleaseUnmanagedResources();
         _loggers.Clear();
         _onChangeToken?.Dispose();
+        GC.SuppressFinalize(this);
+    }
+
+    /// <summary>Finalizes an instance of the <see cref="SdlLoggerProvider"/> class.</summary>
+    ~SdlLoggerProvider() => ReleaseUnmanagedResources();
+
+    private static void ReleaseUnmanagedResources()
+    {
+        if (NativeSdl.LogOutputFunctionHandle.IsAllocated)
+        {
+            NativeSdl.LogOutputFunctionHandle.Free();
+        }
     }
 
     private SdlLoggerConfiguration GetCurrentConfig() => _currentConfig;

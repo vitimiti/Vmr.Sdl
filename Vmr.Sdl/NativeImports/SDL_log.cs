@@ -6,6 +6,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -133,6 +134,11 @@ internal static partial class NativeSdl
     }
 
     // void (SDLCALL *SDL_LogOutputFunction)(void *userdata, int category, SDL_LogPriority priority, const char *message);
+    [SuppressMessage(
+        "Spacing Rules",
+        "SA1023:DereferenceAndAccessOfMustBeSpacedCorrectly",
+        Justification = "This is a pointer to a delegate."
+    )]
     private static readonly unsafe delegate* unmanaged[Cdecl]<
         nint,
         int,
@@ -155,6 +161,11 @@ internal static partial class NativeSdl
         );
     }
 
+    [SuppressMessage(
+        "Spacing Rules",
+        "SA1023:DereferenceAndAccessOfMustBeSpacedCorrectly",
+        Justification = "This is a pointer to a delegate."
+    )]
     [DefaultDllImportSearchPaths(DllImportSearchPath.UserDirectories)]
     [LibraryImport(LibraryName, EntryPoint = "SDL_SetLogOutputFunction")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]

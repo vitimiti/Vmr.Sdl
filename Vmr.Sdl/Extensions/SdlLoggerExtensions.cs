@@ -18,24 +18,44 @@ namespace Vmr.Sdl.Extensions;
 /// <summary>Provides extension methods for configuring SDL logging within the Microsoft.Extensions.Logging framework.</summary>
 public static class SdlLoggerExtensions
 {
-    /// <summary>Adds the SDL logger to the logging builder, configuring the necessary services and enabling SDL logging functionality within the application's logging framework.</summary>
-    /// <param name="builder">The <see cref="ILoggingBuilder"/> to configure SDL logging on. This is typically provided within the application's dependency injection system.</param>
-    /// <returns>The <see cref="ILoggingBuilder"/> with SDL logging configured, allowing method chaining for additional logging extensions.</returns>
+    /// <summary>Adds the SDL logger to the logging builder.</summary>
+    /// <param name="builder">The logging builder.</param>
+    /// <returns>The logging builder for method chaining.</returns>
     public static ILoggingBuilder AddSdlLogger([NotNull] this ILoggingBuilder builder)
     {
         builder.AddConfiguration();
+        builder.Services.TryAddSingleton<ISdlCategoryMapper, DefaultSdlCategoryMapper>();
         builder.Services.TryAddEnumerable(ServiceDescriptor.Singleton<ILoggerProvider, SdlLoggerProvider>());
         LoggerProviderOptions.RegisterProviderOptions<SdlLoggerConfiguration, SdlLoggerProvider>(builder.Services);
         return builder;
     }
 
-    /// <summary>Adds the SDL logger to the logging builder, configuring the necessary services and enabling SDL logging functionality with additional custom configuration options.</summary>
-    /// <param name="builder">The <see cref="ILoggingBuilder"/> to configure SDL logging on. This is typically provided within the application's dependency injection system.</param>
-    /// <param name="configure">A delegate to configure the <see cref="SdlLoggerConfiguration"/>, allowing customization of SDL logging behavior.</param>
-    /// <returns>The <see cref="ILoggingBuilder"/> with SDL logging configured, allowing method chaining for additional logging extensions.</returns>
-    public static ILoggingBuilder AddSdlLogger(this ILoggingBuilder builder, Action<SdlLoggerConfiguration> configure)
+    /// <summary>Adds the SDL logger to the logging builder with custom configuration.</summary>
+    /// <param name="builder">The logging builder.</param>
+    /// <param name="configure">Configuration action.</param>
+    /// <returns>The logging builder for method chaining.</returns>
+    public static ILoggingBuilder AddSdlLogger(
+        this ILoggingBuilder builder,
+        Action<SdlLoggerConfiguration> configure
+    ) => builder.AddSdlLogger().Services.Configure(configure).GetLoggingBuilder();
+
+    /// <summary>Adds the SDL logger to the logging builder with a custom category mapper.</summary>
+    /// <param name="builder">The logging builder.</param>
+    /// <param name="categoryMapper">Custom category mapper.</param>
+    /// <returns>The logging builder for method chaining.</returns>
+    public static ILoggingBuilder AddSdlLogger(
+        [NotNull] this ILoggingBuilder builder,
+        ISdlCategoryMapper categoryMapper
+    )
     {
-        _ = builder.AddSdlLogger().Services.Configure(configure);
-        return builder;
+        _ = builder.Services.AddSingleton(categoryMapper);
+        return builder.AddSdlLogger();
+    }
+
+    private static LoggingBuilder GetLoggingBuilder(this IServiceCollection services) => new(services);
+
+    private sealed class LoggingBuilder(IServiceCollection services) : ILoggingBuilder
+    {
+        public IServiceCollection Services => services;
     }
 }
