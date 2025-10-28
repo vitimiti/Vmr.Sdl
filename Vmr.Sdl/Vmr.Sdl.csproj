@@ -5,4 +5,11 @@
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Update="Microsoft.Extensions.DependencyInjection" Version="9.0.10" />
+    <PackageReference Update="Microsoft.Extensions.Logging.Abstractions" Version="9.0.10" />
+    <PackageReference Update="Microsoft.Extensions.Options" Version="9.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="9.0.10" />
+  </ItemGroup>
 </Project>
