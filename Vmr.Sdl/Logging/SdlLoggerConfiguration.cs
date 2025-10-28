@@ -17,34 +17,44 @@ namespace Vmr.Sdl.Logging;
 /// <param name="message">The log message.</param>
 public delegate void SdlLogOutputFunction(LogLevel level, LogCategory category, string message);
 
+/// <summary>Represents the configuration settings for the SDL-based logger implementation.</summary>
 public class SdlLoggerConfiguration
 {
-    private SdlLogOutputFunction? _callback;
+    private Dictionary<LogCategory, LogLevel> _map = new()
+    {
+        { LogCategory.Application, LogLevel.Information },
+        { LogCategory.Error, LogLevel.Error },
+        { LogCategory.Assert, LogLevel.Warning },
+        { LogCategory.System, LogLevel.Error },
+        { LogCategory.Audio, LogLevel.Error },
+        { LogCategory.Video, LogLevel.Error },
+        { LogCategory.Render, LogLevel.Error },
+        { LogCategory.Input, LogLevel.Error },
+        { LogCategory.Test, LogLevel.Trace },
+        { LogCategory.Gpu, LogLevel.Information },
+    };
 
-    /// <summary>Initializes a new instance of the <see cref="SdlLoggerConfiguration"/> class.</summary>
-    /// <param name="sdlLogLevel">The <see cref="LogLevel"/> to set the SDL categories to.</param>
-    public SdlLoggerConfiguration(LogLevel sdlLogLevel = LogLevel.Information) =>
-        NativeSdl.SetLogPriorities(NativeSdl.LogLevelToLogPriority(sdlLogLevel));
+    private SdlLogOutputFunction? _callback;
 
     /// <summary>Gets or sets the event ID to use for logging.</summary>
     public int EventId { get; set; }
 
-    /// <summary>Gets or sets the category to use for logging.</summary>
-    public LogCategory Category { get; set; }
-
-    /// <summary>Gets the log level to color map.</summary>
-    public Dictionary<LogLevel, ConsoleColor> LogLevelToColorMap { get; set; } =
-        new()
+    /// <summary>Gets or sets the mapping between log categories and their corresponding log levels.</summary>
+    /// <remarks>This dictionary determines the log level assigned to each log category. Setting this property updates the native SDL log priorities to reflect the specified log levels per category.</remarks>
+    public Dictionary<LogCategory, LogLevel> LogCategoryToLevelMap
+    {
+        get => _map;
+        set
         {
-            [LogLevel.Information] = ConsoleColor.Green,
-            [LogLevel.Warning] = ConsoleColor.Yellow,
-            [LogLevel.Error] = ConsoleColor.Red,
-            [LogLevel.Critical] = ConsoleColor.Red,
-            [LogLevel.Trace] = ConsoleColor.Gray,
-            [LogLevel.Debug] = ConsoleColor.Gray,
-            [LogLevel.None] = ConsoleColor.Gray,
-        };
+            foreach ((LogCategory category, LogLevel level) in value)
+            {
+                NativeSdl.SetLogPriority((int)category, NativeSdl.LogLevelToLogPriority(level));
+                _map[category] = level;
+            }
+        }
+    }
 
+    /// <summary>Gets or sets the delegate used to control the output of the SDL logging system.</summary>
     public SdlLogOutputFunction? OutputFunction
     {
         get => _callback;

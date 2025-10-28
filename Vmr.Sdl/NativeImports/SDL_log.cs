@@ -47,9 +47,9 @@ internal static partial class NativeSdl
         };
 
     [DefaultDllImportSearchPaths(DllImportSearchPath.UserDirectories)]
-    [LibraryImport(LibraryName, EntryPoint = "SDL_SetLogPriorities")]
+    [LibraryImport(LibraryName, EntryPoint = "SDL_SetLogPriority")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
-    public static partial void SetLogPriorities(LogPriority priority);
+    public static partial void SetLogPriority(int category, LogPriority priority);
 
     [DefaultDllImportSearchPaths(DllImportSearchPath.UserDirectories)]
     [LibraryImport(

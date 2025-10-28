@@ -6,10 +6,12 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using Microsoft.Extensions.Logging;
+
 namespace Vmr.Sdl.Logging;
 
 /// <summary>The predefined log categories.</summary>
-/// <remarks>By default, the application and GPU categories are enabled at the <see cref="LogPriority.Info"/> level, the assert category is enabled at the <see cref="LogPriority.Warn"/> level, test is enabled at the <see cref="LogPriority.Verbose"/> level and all other categories are enabled at the <see cref="LogPriority.Error"/> level.</remarks>
+/// <remarks>By default, the application and GPU categories are enabled at the <see cref="LogLevel.Information"/> level, the assert category is enabled at the <see cref="LogLevel.Warning"/> level, test is enabled at the <see cref="LogLevel.Trace"/> level and all other categories are enabled at the <see cref="LogLevel.Error"/> level.</remarks>
 public enum LogCategory
 {
     /// <summary>The application category.</summary>

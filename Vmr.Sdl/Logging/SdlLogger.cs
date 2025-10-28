@@ -17,18 +17,32 @@ namespace Vmr.Sdl.Logging;
 /// <param name="getCurrentConfig">The configuration for the logger.</param>
 public sealed class SdlLogger(string name, Func<SdlLoggerConfiguration> getCurrentConfig) : IDisposable, ILogger
 {
+    private LogCategory? _category;
+
     /// <summary>Begins the scope of the <see cref="SdlLogger"/>.</summary>
     /// <param name="state">The state of the logger.</param>
     /// <typeparam name="TState">The type of the state for the logger.</typeparam>
     /// <returns>An <see cref="IDisposable"/> object for the scope, or <see langword="null"/> if the scope couldn't be started.</returns>
     /// <remarks>The <see cref="state"/> CANNOT be <see langword="null"/>.</remarks>
     public IDisposable? BeginScope<TState>(TState state)
-        where TState : notnull => null!;
+        where TState : notnull => null;
 
-    /// <summary>Determines whether logging is enabled for the specified log level.</summary>
-    /// <param name="logLevel">The log level to check.</param>
-    /// <returns><see langword="true"/> if logging is enabled for the specified level; otherwise, <see langword="false"/>.</returns>
-    public bool IsEnabled(LogLevel logLevel) => getCurrentConfig().LogLevelToColorMap.ContainsKey(logLevel);
+    /// <summary>Determines whether the specified log level is enabled.
+    /// </summary><param name="logLevel">The log level to check.</param>
+    /// <returns><see langword="true"/> if the specified log level is enabled; otherwise, <see langword="false"/>.</returns>
+    public bool IsEnabled(LogLevel logLevel)
+    {
+        LogCategory? category = GetLogCategory();
+        if (!category.HasValue)
+        {
+            return false;
+        }
+
+        SdlLoggerConfiguration config = getCurrentConfig();
+
+        return config.LogCategoryToLevelMap.TryGetValue(category.Value, out LogLevel enabledLevel)
+            && logLevel >= enabledLevel;
+    }
 
     /// <summary>Logs the given message or exception using the specified log level, event ID, and state information.</summary>
     /// <param name="logLevel">The level of the log message.</param>
@@ -45,7 +59,8 @@ public sealed class SdlLogger(string name, Func<SdlLoggerConfiguration> getCurre
         [NotNull] Func<TState, Exception?, string> formatter
     )
     {
-        if (!IsEnabled(logLevel))
+        LogCategory? category = GetLogCategory();
+        if (!category.HasValue || !IsEnabled(logLevel))
         {
             return;
         }
@@ -56,38 +71,33 @@ public sealed class SdlLogger(string name, Func<SdlLoggerConfiguration> getCurre
             return;
         }
 
-        LogCategory category = config.Category;
-        ConsoleColor originalColor = Console.ForegroundColor;
-
-        Console.ForegroundColor = config.LogLevelToColorMap[logLevel];
-
+        var message = $"{name}\n\t{formatter(state, exception)}";
+        var categoryInt = (int)category.Value;
         switch (logLevel)
         {
             case LogLevel.Trace:
-                NativeSdl.LogTrace((int)category, formatter(state, exception));
+                NativeSdl.LogTrace(categoryInt, message);
                 break;
             case LogLevel.Debug:
-                NativeSdl.LogDebug((int)category, formatter(state, exception));
+                NativeSdl.LogDebug(categoryInt, message);
                 break;
             case LogLevel.Information:
-                NativeSdl.LogInfo((int)category, formatter(state, exception));
+                NativeSdl.LogInfo(categoryInt, message);
                 break;
             case LogLevel.Warning:
-                NativeSdl.LogWarn((int)category, formatter(state, exception));
+                NativeSdl.LogWarn(categoryInt, message);
                 break;
             case LogLevel.Error:
-                NativeSdl.LogError((int)category, formatter(state, exception));
+                NativeSdl.LogError(categoryInt, message);
                 break;
             case LogLevel.Critical:
-                NativeSdl.LogCritical((int)category, formatter(state, exception));
+                NativeSdl.LogCritical(categoryInt, message);
                 break;
             case LogLevel.None:
             default:
-                NativeSdl.LogMessage((int)category, NativeSdl.LogPriority.Invalid, formatter(state, exception));
+                NativeSdl.LogMessage(categoryInt, NativeSdl.LogPriority.Invalid, message);
                 break;
         }
-
-        Console.ForegroundColor = originalColor;
     }
 
     /// <inheritdoc cref="IDisposable.Dispose"/>
@@ -106,5 +116,37 @@ public sealed class SdlLogger(string name, Func<SdlLoggerConfiguration> getCurre
         {
             NativeSdl.LogOutputFunctionHandle.Free();
         }
+    }
+
+    private LogCategory? GetLogCategory()
+    {
+        if (_category.HasValue)
+        {
+            return _category;
+        }
+
+        // Try to parse the logger name as a LogCategory enum
+        if (Enum.TryParse<LogCategory>(name, true, out LogCategory parsedCategory))
+        {
+            _category = parsedCategory;
+            return _category;
+        }
+
+        _category = name switch
+        {
+            _ when name.Contains("application", StringComparison.InvariantCultureIgnoreCase) => LogCategory.Application,
+            _ when name.Contains("error", StringComparison.InvariantCultureIgnoreCase) => LogCategory.Error,
+            _ when name.Contains("assert", StringComparison.InvariantCultureIgnoreCase) => LogCategory.Assert,
+            _ when name.Contains("system", StringComparison.InvariantCultureIgnoreCase) => LogCategory.System,
+            _ when name.Contains("audio", StringComparison.InvariantCultureIgnoreCase) => LogCategory.Audio,
+            _ when name.Contains("video", StringComparison.InvariantCultureIgnoreCase) => LogCategory.Video,
+            _ when name.Contains("render", StringComparison.InvariantCultureIgnoreCase) => LogCategory.Render,
+            _ when name.Contains("input", StringComparison.InvariantCultureIgnoreCase) => LogCategory.Input,
+            _ when name.Contains("test", StringComparison.InvariantCultureIgnoreCase) => LogCategory.Test,
+            _ when name.Contains("gpu", StringComparison.InvariantCultureIgnoreCase) => LogCategory.Gpu,
+            _ => null, // No matching category found
+        };
+
+        return _category;
     }
 }
