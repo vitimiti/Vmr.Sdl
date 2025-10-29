@@ -21,7 +21,7 @@ public class SdlApplication : IDisposable
     {
         get
         {
-            ArgumentNullException.ThrowIfNull(this);
+            ArgumentNullException.ThrowIfNull(this); // Will never happen, but it prevents static usage of this property.
             return new EventPump();
         }
     }
@@ -32,7 +32,7 @@ public class SdlApplication : IDisposable
     {
         get
         {
-            ArgumentNullException.ThrowIfNull(this);
+            ArgumentNullException.ThrowIfNull(this); // Will never happen, but it prevents static usage of this property.
             return new AudioSubsystem();
         }
     }
@@ -43,7 +43,7 @@ public class SdlApplication : IDisposable
     {
         get
         {
-            ArgumentNullException.ThrowIfNull(this);
+            ArgumentNullException.ThrowIfNull(this); // Will never happen, but it prevents static usage of this property.
             return new CameraSubsystem();
         }
     }
@@ -54,7 +54,7 @@ public class SdlApplication : IDisposable
     {
         get
         {
-            ArgumentNullException.ThrowIfNull(this);
+            ArgumentNullException.ThrowIfNull(this); // Will never happen, but it prevents static usage of this property.
             return new GamepadSubsystem();
         }
     }
@@ -65,7 +65,7 @@ public class SdlApplication : IDisposable
     {
         get
         {
-            ArgumentNullException.ThrowIfNull(this);
+            ArgumentNullException.ThrowIfNull(this); // Will never happen, but it prevents static usage of this property.
             return new HapticSubsystem();
         }
     }
@@ -76,7 +76,7 @@ public class SdlApplication : IDisposable
     {
         get
         {
-            ArgumentNullException.ThrowIfNull(this);
+            ArgumentNullException.ThrowIfNull(this); // Will never happen, but it prevents static usage of this property.
             return new JoystickSubsystem();
         }
     }
@@ -87,7 +87,7 @@ public class SdlApplication : IDisposable
     {
         get
         {
-            ArgumentNullException.ThrowIfNull(this);
+            ArgumentNullException.ThrowIfNull(this); // Will never happen, but it prevents static usage of this property.
             return new SensorSubsystem();
         }
     }
@@ -98,7 +98,7 @@ public class SdlApplication : IDisposable
     {
         get
         {
-            ArgumentNullException.ThrowIfNull(this);
+            ArgumentNullException.ThrowIfNull(this); // Will never happen, but it prevents static usage of this property.
             return new VideoSubsystem();
         }
     }

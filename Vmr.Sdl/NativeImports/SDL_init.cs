@@ -8,11 +8,21 @@
 
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
+using Vmr.Sdl.CustomMarshallers;
 
 namespace Vmr.Sdl.NativeImports;
 
 internal static partial class NativeSdl
 {
+    public const string PropAppMetadataNameString = "SDL.app.metadata.name";
+    public const string PropAppMetadataVersionString = "SDL.app.metadata.version";
+    public const string PropAppMetadataIdentifierString = "SDL.app.metadata.identifier";
+    public const string PropAppMetadataCreatorString = "SDL.app.metadata.creator";
+    public const string PropAppMetadataCopyrightString = "SDL.app.metadata.copyright";
+    public const string PropAppMetadataUrlString = "SDL.app.metadata.url";
+    public const string PropAppMetadataTypeString = "SDL.app.metadata.type";
+
     [DefaultDllImportSearchPaths(DllImportSearchPath.UserDirectories)]
     [LibraryImport(LibraryName, EntryPoint = "SDL_InitSubSystem")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
@@ -33,6 +43,24 @@ internal static partial class NativeSdl
     [LibraryImport(LibraryName, EntryPoint = "SDL_Quit")]
     [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
     public static partial void Quit();
+
+    [DefaultDllImportSearchPaths(DllImportSearchPath.UserDirectories)]
+    [LibraryImport(LibraryName, EntryPoint = "SDL_SetAppMetadata", StringMarshalling = StringMarshalling.Utf8)]
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [return: MarshalAs(UnmanagedType.I4)]
+    public static partial bool SetAppMetadata(string? appName, string? appVersion, string? appIdentifier);
+
+    [DefaultDllImportSearchPaths(DllImportSearchPath.UserDirectories)]
+    [LibraryImport(LibraryName, EntryPoint = "SDL_SetAppMetadataProperty", StringMarshalling = StringMarshalling.Utf8)]
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [return: MarshalAs(UnmanagedType.I4)]
+    public static partial bool SetAppMetadataProperty(string name, string? value);
+
+    [DefaultDllImportSearchPaths(DllImportSearchPath.UserDirectories)]
+    [LibraryImport(LibraryName, EntryPoint = "SDL_GetAppMetadataProperty", StringMarshalling = StringMarshalling.Utf8)]
+    [UnmanagedCallConv(CallConvs = [typeof(CallConvCdecl)])]
+    [return: MarshalUsing(typeof(SdlOwnedUtf8StringMarshaller))]
+    public static partial string? GetAppMetadataProperty(string name);
 
     public record struct InitFlags(uint Value)
     {
