@@ -135,9 +135,9 @@ internal static partial class NativeSdl
 
     // void (SDLCALL *SDL_LogOutputFunction)(void *userdata, int category, SDL_LogPriority priority, const char *message);
     [SuppressMessage(
-        "Spacing Rules",
+        "StyleCop.CSharp.SpacingRules",
         "SA1023:DereferenceAndAccessOfMustBeSpacedCorrectly",
-        Justification = "This is a pointer to a delegate."
+        Justification = "This is a pointer within a delegate argument list."
     )]
     private static readonly unsafe delegate* unmanaged[Cdecl]<
         nint,
@@ -162,9 +162,9 @@ internal static partial class NativeSdl
     }
 
     [SuppressMessage(
-        "Spacing Rules",
+        "StyleCop.CSharp.SpacingRules",
         "SA1023:DereferenceAndAccessOfMustBeSpacedCorrectly",
-        Justification = "This is a pointer to a delegate."
+        Justification = "This is a pointer within a delegate argument list."
     )]
     [DefaultDllImportSearchPaths(DllImportSearchPath.UserDirectories)]
     [LibraryImport(LibraryName, EntryPoint = "SDL_SetLogOutputFunction")]

@@ -150,9 +150,9 @@ internal static partial class NativeSdl
 
     // void (SDLCALL *SDL_EnumeratePropertiesCallback)(void* userdata, SDL_PropertiesID props, const char* name);
     [SuppressMessage(
-        "Spacing Rules",
+        "StyleCop.CSharp.SpacingRules",
         "SA1023:DereferenceAndAccessOfMustBeSpacedCorrectly",
-        Justification = "This is a pointer to a delegate."
+        Justification = "This is a pointer within a delegate argument list."
     )]
     private static readonly unsafe delegate* unmanaged[Cdecl]<
         nint,
@@ -179,9 +179,9 @@ internal static partial class NativeSdl
     }
 
     [SuppressMessage(
-        "Spacing Rules",
+        "StyleCop.CSharp.SpacingRules",
         "SA1023:DereferenceAndAccessOfMustBeSpacedCorrectly",
-        Justification = "This is a pointer to a delegate."
+        Justification = "This is a pointer within a delegate argument list."
     )]
     [DefaultDllImportSearchPaths(DllImportSearchPath.UserDirectories)]
     [LibraryImport(LibraryName, EntryPoint = "SDL_EnumerateProperties")]

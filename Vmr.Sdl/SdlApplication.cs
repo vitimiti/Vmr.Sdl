@@ -48,7 +48,7 @@ public class SdlApplication : IDisposable
         }
     }
 
-    /// <summary>Provides access to the gamepad subsystem through an instance of <see cref="GamepadSubsystem"/>.</summary>
+    /// <summary>Gets access to the gamepad subsystem through an instance of <see cref="GamepadSubsystem"/>.</summary>
     /// <remarks>The GamepadSubsystem property creates and returns an instance of the <see cref="GamepadSubsystem"/> class, which enables interaction with gamepad devices and SDL's gamepad-related functionality. Proper lifecycle management, including initialization and disposal of resources, is handled within the subsystem.</remarks>
     public GamepadSubsystem GamepadSubsystem
     {
@@ -81,7 +81,7 @@ public class SdlApplication : IDisposable
         }
     }
 
-    /// <summary>Provides access to the SDL sensor-related functionality through an instance of <see cref="SensorSubsystem"/>.</summary>
+    /// <summary>Gets access to the SDL sensor-related functionality through an instance of <see cref="SensorSubsystem"/>.</summary>
     /// <remarks>The SensorSubsystem property initializes and returns an instance of the <see cref="SensorSubsystem"/> class, which facilitates the management and interaction with sensor components within the SDL environment. Proper initialization and disposal of the subsystem are automatically handled during its lifecycle.</remarks>
     public SensorSubsystem SensorSubsystem
     {

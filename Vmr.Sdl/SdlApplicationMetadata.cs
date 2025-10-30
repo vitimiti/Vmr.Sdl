@@ -6,6 +6,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Diagnostics.CodeAnalysis;
 using Vmr.Sdl.NativeImports;
 
 namespace Vmr.Sdl;
@@ -36,6 +37,11 @@ public class SdlApplicationMetadata
 
     /// <summary>Gets or sets the name of the application.</summary>
     /// <exception cref="InvalidOperationException">When the SDL application metadata failed to be set.</exception>
+    [SuppressMessage(
+        "StyleCop.CSharp.LayoutRules",
+        "SA1516:ElementsMustBeSeparatedByBlankLine",
+        Justification = "This is a set/get property, not normal methods."
+    )]
     public string? Name
     {
         get
@@ -55,6 +61,11 @@ public class SdlApplicationMetadata
 
     /// <summary>Gets or sets the version of the application.</summary>
     /// <exception cref="InvalidOperationException">When the SDL application metadata failed to be set.</exception>
+    [SuppressMessage(
+        "StyleCop.CSharp.LayoutRules",
+        "SA1516:ElementsMustBeSeparatedByBlankLine",
+        Justification = "This is a set/get property, not normal methods."
+    )]
     public Version? Version
     {
         get
@@ -75,6 +86,11 @@ public class SdlApplicationMetadata
 
     /// <summary>Gets or sets the identifier of the application.</summary>
     /// <exception cref="InvalidOperationException">When the SDL application metadata failed to be set.</exception>
+    [SuppressMessage(
+        "StyleCop.CSharp.LayoutRules",
+        "SA1516:ElementsMustBeSeparatedByBlankLine",
+        Justification = "This is a set/get property, not normal methods."
+    )]
     public string? Identifier
     {
         get
@@ -94,6 +110,11 @@ public class SdlApplicationMetadata
 
     /// <summary>Gets or sets the creator of the application.</summary>
     /// <exception cref="InvalidOperationException">When the SDL application metadata failed to be set.</exception>
+    [SuppressMessage(
+        "StyleCop.CSharp.LayoutRules",
+        "SA1516:ElementsMustBeSeparatedByBlankLine",
+        Justification = "This is a set/get property, not normal methods."
+    )]
     public string? Creator
     {
         get
@@ -113,6 +134,11 @@ public class SdlApplicationMetadata
 
     /// <summary>Gets or sets the copyright information for the SDL application.</summary>
     /// <exception cref="InvalidOperationException">When setting the copyright value fails due to an error in the native SDL API.</exception>
+    [SuppressMessage(
+        "StyleCop.CSharp.LayoutRules",
+        "SA1516:ElementsMustBeSeparatedByBlankLine",
+        Justification = "This is a set/get property, not normal methods."
+    )]
     public string? Copyright
     {
         get
@@ -132,6 +158,11 @@ public class SdlApplicationMetadata
 
     /// <summary>Gets or sets the URL associated with the SDL application.</summary>
     /// <exception cref="InvalidOperationException">Thrown when the SDL application metadata update for the URL fails.</exception>
+    [SuppressMessage(
+        "StyleCop.CSharp.LayoutRules",
+        "SA1516:ElementsMustBeSeparatedByBlankLine",
+        Justification = "This is a set/get property, not normal methods."
+    )]
     public Uri? Url
     {
         get
@@ -152,6 +183,11 @@ public class SdlApplicationMetadata
 
     /// <summary>Gets or sets the application type metadata.</summary>
     /// <exception cref="InvalidOperationException">Thrown when the application type metadata fails to be set through the SDL API.</exception>
+    [SuppressMessage(
+        "StyleCop.CSharp.LayoutRules",
+        "SA1516:ElementsMustBeSeparatedByBlankLine",
+        Justification = "This is a set/get property, not normal methods."
+    )]
     public string? AppType
     {
         get
