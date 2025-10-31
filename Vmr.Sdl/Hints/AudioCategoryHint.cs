@@ -8,6 +8,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 using Vmr.Sdl.NativeImports;
+using Vmr.Sdl.Subsystems;
 
 namespace Vmr.Sdl.Hints;
 
@@ -29,7 +30,7 @@ public class AudioCategoryHint : HintBase
     /// </list>
     /// </para>
     /// <para>For more information, see Apple's documentation: <see href="https://developer.apple.com/library/content/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/AudioSessionCategoriesandModes/AudioSessionCategoriesandModes.html"/>.</para>
-    /// <para>This hint should be set before SDL is initialized (<see cref="Application"/>).</para>
+    /// <para>This hint should be set before SDL is initialized (<see cref="AudioSubsystem"/>).</para>
     /// </remarks>
     public static AudioCategory Value
     {
