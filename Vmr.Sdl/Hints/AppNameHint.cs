@@ -14,7 +14,6 @@ namespace Vmr.Sdl.Hints;
 /// <remarks>
 /// <para>This hint lets you specify the application name sent to the OS when required. For example, this will often appear in volume control applets for audio streams, and in lists of applications which are inhibiting the screensaver. You should use a string that describes your program ("My Game 2: The Revenge".)</para>
 /// <para>This will override <see cref="ApplicationMetadata.Name"/>, if set by the application.</para>
-/// <para>This hint should be set before SDL is initialized.</para>
 /// <para>You can set this hint through the environment variable "SDL_APP_NAME".</para>
 /// </remarks>
 public class AppNameHint : HintBase
@@ -22,6 +21,7 @@ public class AppNameHint : HintBase
     private const string Hint = "SDL_APP_NAME";
 
     /// <summary>Gets or sets the value of the hint.</summary>
+    /// <remarks>This hint should be set before SDL is initialized.</remarks>
     public static string? Value
     {
         get => NativeSdl.GetHint(Hint);
