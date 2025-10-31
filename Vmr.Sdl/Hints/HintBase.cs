@@ -25,6 +25,20 @@ public abstract class HintBase
 
     private static GCHandle CallbackHandle { get; set; }
 
+    /// <summary>Sets a hint value.</summary>
+    /// <param name="name">The name of the hint.</param>
+    /// <param name="value">The value of the hint.</param>
+    /// <exception cref="InvalidOperationException">Thrown when the hint failed to be set.</exception>
+    protected static void SetHintValue(string name, string? value)
+    {
+        if (!NativeSdl.SetHint(name, value))
+        {
+            throw new InvalidOperationException(
+                $"Unable to set the hint \"{name}\" to {value} ({NativeSdl.GetError()}.)"
+            );
+        }
+    }
+
     /// <summary>Sets a hint with a priority.</summary>
     /// <param name="name">The name of the hint.</param>
     /// <param name="value">The value of the hint.</param>

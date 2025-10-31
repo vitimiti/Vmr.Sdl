@@ -28,7 +28,7 @@ public class DefaultAlsaAudioDeviceHint : HintBase
     public static string? Value
     {
         get => NativeSdl.GetHint(Hint);
-        set => NativeSdl.SetHint(Hint, value);
+        set => SetHintValue(Hint, value);
     }
 
     /// <summary>Sets the hint with the given priority.</summary>

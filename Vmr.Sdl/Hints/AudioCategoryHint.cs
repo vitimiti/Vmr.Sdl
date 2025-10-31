@@ -52,12 +52,7 @@ public class AudioCategoryHint : HintBase
                 _ => "ambient",
             };
 
-            if (!NativeSdl.SetHint(Hint, category))
-            {
-                throw new InvalidOperationException(
-                    $"Unable to set the hint \"{Hint}\" to {value} ({NativeSdl.GetError()}.)"
-                );
-            }
+            SetHintValue(Hint, category);
         }
     }
 

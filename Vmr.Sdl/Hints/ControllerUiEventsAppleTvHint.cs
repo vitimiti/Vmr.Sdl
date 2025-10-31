@@ -32,7 +32,7 @@ public sealed class ControllerUiEventsAppleTvHint : HintBase
     public static bool Value
     {
         get => NativeSdl.GetHintBoolean(Hint, defaultValue: true);
-        set => NativeSdl.SetHint(Hint, value ? "1" : "0");
+        set => SetHintValue(Hint, value ? "1" : "0");
     }
 
     /// <summary>Sets the hint with the given priority.</summary>
