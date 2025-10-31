@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="AllowAltTabWhileGrabbedHint.cs" company="Vmr.Sdl">
+// <copyright file="AllowRecreateActivityAndroidHint.cs" company="Vmr.Sdl">
 // Copyright (c) Vmr.Sdl. All rights reserved.
 // Licensed under the MIT license.
 // See LICENSE.md for more information.
@@ -10,24 +10,23 @@ using Vmr.Sdl.NativeImports;
 
 namespace Vmr.Sdl.Hints;
 
-/// <summary>Specify the behavior of Alt+Tab while the keyboard is grabbed.</summary>
-/// <remarks>By default, SDL emulates Alt+Tab functionality while the keyboard is grabbed and your window is full-screen. This prevents the user from getting stuck in your application if you've enabled keyboard grab.</remarks>
-public sealed class AllowAltTabWhileGrabbedHint : HintBase
+/// <summary>A variable to control whether the SDL activity is allowed to be re-created.</summary>
+/// <remarks>If this hint is true, the activity can be recreated on demand by the OS, and Java static data and C++ static data remain with their current values. If this hint is false, then SDL will call exit() when you return from your main function and the application will be terminated and then started fresh each time.</remarks>
+public class AllowRecreateActivityAndroidHint : HintBase
 {
-    private const string Hint = "SDL_ALLOW_ALT_TAB_WHILE_GRABBED";
+    private const string Hint = "SDL_ANDROID_ALLOW_RECREATE_ACTIVITY";
 
     /// <summary>Gets or sets a value indicating whether the hint is enabled or not.</summary>
     /// <remarks>
     /// The variable can be set to the following values:
     /// <list type="bullet">
-    /// <item><see langword="true"/>: SDL will not handle Alt+Tab. Your application is responsible for handling Alt+Tab while the keyboard is grabbed.</item>
-    /// <item><see langword="false"/> (Default): SDL will minimize your window when Alt+Tab is pressed.</item>
+    /// <item><see langword="true"/> (Default): The application starts fresh at each launch.</item>
+    /// <item><see langword="false"/>: The application activity can be recreated by the OS.</item>
     /// </list>
-    /// This hint can be set any time.
     /// </remarks>
     public static bool Value
     {
-        get => NativeSdl.GetHintBoolean(Hint, defaultValue: true);
+        get => NativeSdl.GetHintBoolean(Hint, defaultValue: false);
         set => NativeSdl.SetHint(Hint, value ? "1" : "0");
     }
 
