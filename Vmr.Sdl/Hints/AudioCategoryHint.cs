@@ -13,9 +13,7 @@ using Vmr.Sdl.Subsystems;
 namespace Vmr.Sdl.Hints;
 
 /// <summary>A variable setting the app ID string.</summary>
-/// <remarks>
-/// <para>You can set this hint through the environment variable "SDL_AUDIO_CATEGORY".</para>
-/// </remarks>
+/// <remarks>You can set this hint through the environment variable "SDL_AUDIO_CATEGORY".</remarks>
 public class AudioCategoryHint : HintBase
 {
     private const string Hint = "SDL_AUDIO_CATEGORY";
