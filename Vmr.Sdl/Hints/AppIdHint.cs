@@ -15,6 +15,7 @@ namespace Vmr.Sdl.Hints;
 /// <para>This string is used by desktop compositors to identify and group windows together, as well as match applications with associated desktop settings and icons.</para>
 /// <para>This will override <see cref="ApplicationMetadata.Identifier"/>, if set by the application.</para>
 /// <para>This hint should be set before SDL is initialized.</para>
+/// <para>You can set this hint through the environment variable "SDL_APP_ID".</para>
 /// </remarks>
 public class AppIdHint : HintBase
 {
