@@ -14,11 +14,15 @@ using Vmr.Sdl.CustomMarshallers;
 namespace Vmr.Sdl.Drawing;
 
 /// <summary>Represents a point in a two-dimensional coordinate system.</summary>
-/// <param name="X">The X-coordinate of the point.</param>
-/// <param name="Y">The Y-coordinate of the point.</param>
 [NativeMarshalling(typeof(PointMarshaller))]
-public record Point(int X, int Y)
+public record Point
 {
+    /// <summary>Gets or sets the X-coordinate of the point.</summary>
+    public int X { get; set; }
+
+    /// <summary>Gets or sets the Y-coordinate of the point.</summary>
+    public int Y { get; set; }
+
     /// <summary>Determines whether the point is inside the given rectangle.</summary>
     /// <param name="rectangle">The rectangle to check.</param>
     /// <returns><see langword="true"/> if the point is inside the rectangle, <see langword="false"/> otherwise.</returns>

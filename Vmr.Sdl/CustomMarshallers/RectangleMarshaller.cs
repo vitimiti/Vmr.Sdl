@@ -19,7 +19,13 @@ namespace Vmr.Sdl.CustomMarshallers;
 internal static class RectangleMarshaller
 {
     public static Rectangle ConvertToManaged(NativeSdl.Rect unmanaged) =>
-        new(unmanaged.X, unmanaged.Y, unmanaged.W, unmanaged.H);
+        new()
+        {
+            X = unmanaged.X,
+            Y = unmanaged.Y,
+            Width = unmanaged.W,
+            Height = unmanaged.H,
+        };
 
     public static NativeSdl.Rect ConvertToUnmanaged(Rectangle managed) =>
         new()

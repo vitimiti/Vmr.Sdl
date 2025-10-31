@@ -17,7 +17,7 @@ internal static class PointMarshaller
 {
     public static class ElementIn
     {
-        public static Point ConvertToManaged(NativeSdl.Point unmanaged) => new(unmanaged.X, unmanaged.Y);
+        public static Point ConvertToManaged(NativeSdl.Point unmanaged) => new() { X = unmanaged.X, Y = unmanaged.Y };
 
         public static NativeSdl.Point ConvertToUnmanaged(Point managed) => new() { X = managed.X, Y = managed.Y };
     }

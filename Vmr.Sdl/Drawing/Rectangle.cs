@@ -15,13 +15,21 @@ using Vmr.Sdl.NativeImports;
 namespace Vmr.Sdl.Drawing;
 
 /// <summary>Represents a rectangle defined by its X and Y coordinates, width, and height.</summary>
-/// <param name="X">The X-coordinate of the rectangle.</param>
-/// <param name="Y">The Y-coordinate of the rectangle.</param>
-/// <param name="Width">The width of the rectangle.</param>
-/// <param name="Height">The height of the rectangle.</param>
 [NativeMarshalling(typeof(RectangleMarshaller))]
-public record Rectangle(int X, int Y, int Width, int Height)
+public record Rectangle
 {
+    /// <summary>Gets or sets the X-coordinate of the rectangle.</summary>
+    public int X { get; set; }
+
+    /// <summary>Gets or sets the Y-coordinate of the rectangle.</summary>
+    public int Y { get; set; }
+
+    /// <summary>Gets or sets the width of the rectangle.</summary>
+    public int Width { get; set; }
+
+    /// <summary>Gets or sets the height of the rectangle.</summary>
+    public int Height { get; set; }
+
     /// <summary>Gets a value indicating whether the rectangle is empty.</summary>
     public bool IsEmpty => Width <= 0 || Height <= 0;
 
@@ -33,7 +41,14 @@ public record Rectangle(int X, int Y, int Width, int Height)
     /// <summary>Converts the current <see cref="Rectangle"/> to a <see cref="FRectangle"/>.</summary>
     /// <returns>A <see cref="FRectangle"/> instance converted from the current <see cref="Rectangle"/>.</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public FRectangle ToFRectangle() => new(X, Y, Width, Height);
+    public FRectangle ToFRectangle() =>
+        new()
+        {
+            X = X,
+            Y = Y,
+            Width = Width,
+            Height = Height,
+        };
 
     /// <summary>Determines if two rectangles intersect.</summary>
     /// <param name="other">The rectangle to check for intersection with the current rectangle.</param>
@@ -79,6 +94,6 @@ public record Rectangle(int X, int Y, int Width, int Height)
             ? throw new InvalidOperationException(
                 $"Unable to get the line {line} intersection for the rectangle {this} ({NativeSdl.GetError()}.)"
             )
-            : (new Point(x1, y1), new Point(x2, y2));
+            : (new Point { X = x1, Y = y1 }, new Point { X = x2, Y = y2 });
     }
 }

@@ -17,7 +17,7 @@ internal static class FPointMarshaller
 {
     public static class ElementIn
     {
-        public static FPoint ConvertToManaged(NativeSdl.FPoint unmanaged) => new(unmanaged.X, unmanaged.Y);
+        public static FPoint ConvertToManaged(NativeSdl.FPoint unmanaged) => new() { X = unmanaged.X, Y = unmanaged.Y };
 
         public static NativeSdl.FPoint ConvertToUnmanaged(FPoint managed) => new() { X = managed.X, Y = managed.Y };
     }

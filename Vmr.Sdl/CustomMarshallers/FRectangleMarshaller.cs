@@ -19,7 +19,13 @@ namespace Vmr.Sdl.CustomMarshallers;
 internal static class FRectangleMarshaller
 {
     public static FRectangle ConvertToManaged(NativeSdl.FRect unmanaged) =>
-        new(unmanaged.X, unmanaged.Y, unmanaged.W, unmanaged.H);
+        new()
+        {
+            X = unmanaged.X,
+            Y = unmanaged.Y,
+            Width = unmanaged.W,
+            Height = unmanaged.H,
+        };
 
     public static NativeSdl.FRect ConvertToUnmanaged(FRectangle managed) =>
         new()

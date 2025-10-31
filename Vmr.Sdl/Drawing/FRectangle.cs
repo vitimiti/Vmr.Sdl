@@ -14,13 +14,21 @@ using Vmr.Sdl.NativeImports;
 namespace Vmr.Sdl.Drawing;
 
 /// <summary>Represents a rectangle defined by its position (X, Y) and dimensions (Width, Height) with support for various geometric operations.</summary>
-/// <param name="X">The X-coordinate of the rectangle.</param>
-/// <param name="Y">The Y-coordinate of the rectangle.</param>
-/// <param name="Width">The width of the rectangle.</param>
-/// <param name="Height">The height of the rectangle.</param>
 [NativeMarshalling(typeof(FRectangleMarshaller))]
-public record FRectangle(float X, float Y, float Width, float Height)
+public record FRectangle
 {
+    /// <summary>Gets or sets the X-coordinate of the rectangle.</summary>
+    public float X { get; set; }
+
+    /// <summary>Gets or sets the Y-coordinate of the rectangle.</summary>
+    public float Y { get; set; }
+
+    /// <summary>Gets or sets the width of the rectangle.</summary>
+    public float Width { get; set; }
+
+    /// <summary>Gets or sets the height of the rectangle.</summary>
+    public float Height { get; set; }
+
     /// <summary>Gets a value indicating whether the rectangle is empty.</summary>
     public bool IsEmpty => Width <= 0 || Height <= 0;
 
@@ -68,6 +76,6 @@ public record FRectangle(float X, float Y, float Width, float Height)
             ? throw new InvalidOperationException(
                 $"Unable to get the line {line} intersection for the rectangle {this} ({NativeSdl.GetError()}.)"
             )
-            : (new FPoint(x1, y1), new FPoint(x2, y2));
+            : (new FPoint { X = x1, Y = y1 }, new FPoint { X = x2, Y = y2 });
     }
 }
