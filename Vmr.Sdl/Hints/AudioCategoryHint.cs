@@ -28,7 +28,7 @@ public class AudioCategoryHint : HintBase
     /// </list>
     /// </para>
     /// <para>For more information, see Apple's documentation: <see href="https://developer.apple.com/library/content/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/AudioSessionCategoriesandModes/AudioSessionCategoriesandModes.html"/>.</para>
-    /// <para>This hint should be set before SDL is initialized (<see cref="AudioSubsystem"/>).</para>
+    /// <para>This hint should be set before SDL is initialized (see <see cref="AudioSubsystem"/>.)</para>
     /// </remarks>
     public static AudioCategory Value
     {

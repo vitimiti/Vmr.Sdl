@@ -26,6 +26,7 @@ public class AllowRecreateActivityAndroidHint : HintBase
     /// <item><see langword="true"/> (Default): The application starts fresh at each launch.</item>
     /// <item><see langword="false"/>: The application activity can be recreated by the OS.</item>
     /// </list>
+    /// This hint can be set anytime.
     /// </remarks>
     public static bool Value
     {

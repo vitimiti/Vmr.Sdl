@@ -21,7 +21,7 @@ public class AppIdHint : HintBase
     private const string Hint = "SDL_APP_ID";
 
     /// <summary>Gets or sets the value of the hint.</summary>
-    /// <remarks>This hint should be set before SDL is initialized (<see cref="Application"/>.)</remarks>
+    /// <remarks>This hint should be set before SDL is initialized (see <see cref="Application"/>.)</remarks>
     public static string? Value
     {
         get => NativeSdl.GetHint(Hint);

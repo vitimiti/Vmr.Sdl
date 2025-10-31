@@ -27,7 +27,7 @@ public class AudioDeviceStreamNameHint : HintBase
     /// <remarks>
     /// <para>Setting this to <see cref="string.Empty"/> or leaving it unset will have SDL use a reasonable default: "audio stream" or something similar.</para>
     /// <para>Note that while this talks about audio streams, this is an OS-level concept, so it applies to a physical audio device in this case, and not an SDL_AudioStream, nor an SDL logical audio device.</para>
-    /// <para>This hint should be set before an audio device is opened (<see cref="AudioSubsystem"/>.)</para>
+    /// <para>This hint should be set before an audio device is opened (see <see cref="AudioSubsystem"/>.)</para>
     /// </remarks>
     public static string? Value
     {

@@ -27,7 +27,7 @@ public class LowLatencyAudioAndroidHint : HintBase
     /// <item><see langword="true"/>: Low latency audio is not enabled.</item>
     /// <item><see langword="false"/> (Default): Low latency audio is enabled.</item>
     /// </list>
-    /// This hint should be set before SDL audio is initialized (<see cref="AudioSubsystem"/>).
+    /// This hint should be set before SDL audio is initialized (see <see cref="AudioSubsystem"/>.)
     /// </remarks>
     public static bool Value
     {

@@ -22,7 +22,7 @@ public class AudioChannelsHint : HintBase
     private const string Hint = "SDL_AUDIO_CHANNELS";
 
     /// <summary>Gets or sets the value of the hint.</summary>
-    /// <remarks>This hint should be set before SDL is initialized (<see cref="AudioSubsystem"/>).</remarks>
+    /// <remarks>This hint should be set before SDL is initialized (see <see cref="AudioSubsystem"/>.)</remarks>
     public static int Value
     {
         get => int.Parse(NativeSdl.GetHint(Hint) ?? "0", NumberStyles.Integer, CultureInfo.InvariantCulture);

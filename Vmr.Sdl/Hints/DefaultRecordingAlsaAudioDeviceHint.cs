@@ -24,7 +24,7 @@ public class DefaultRecordingAlsaAudioDeviceHint : HintBase
     private const string Hint = "SDL_AUDIO_ALSA_DEFAULT_RECORDING_DEVICE";
 
     /// <summary>Gets or sets the value of the hint.</summary>
-    /// <remarks>This hint should be set before an audio device is opened (<see cref="AudioSubsystem"/>.)</remarks>
+    /// <remarks>This hint should be set before an audio device is opened (see <see cref="AudioSubsystem"/>.)</remarks>
     public static string? Value
     {
         get => NativeSdl.GetHint(Hint);

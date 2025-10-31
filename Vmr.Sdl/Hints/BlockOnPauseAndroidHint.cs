@@ -23,7 +23,7 @@ public class BlockOnPauseAndroidHint : HintBase
     /// <item><see langword="true"/>: Non blocking.</item>
     /// <item><see langword="false"/> (Default): Blocking.</item>
     /// </list>
-    /// This hint should be set before SDL is initialized (<see cref="Application"/>).
+    /// This hint should be set before SDL is initialized (see <see cref="Application"/>.)
     /// </remarks>
     public static bool Value
     {
