@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="DefaultAlsaAudioDeviceHint.cs" company="Vmr.Sdl">
+// <copyright file="DefaultPlaybackAlsaAudioDeviceHint.cs" company="Vmr.Sdl">
 // Copyright (c) Vmr.Sdl. All rights reserved.
 // Licensed under the MIT license.
 // See LICENSE.md for more information.
@@ -11,17 +11,15 @@ using Vmr.Sdl.Subsystems;
 
 namespace Vmr.Sdl.Hints;
 
-// TODO: Change SDL_HINT_AUDIO_ALSA_DEFAULT_RECORDING_DEVICE to our object docs
-
-/// <summary>Specify the default ALSA audio device name.</summary>
+/// <summary>Specify the default ALSA audio playback device name.</summary>
 /// <remarks>
-/// <para>This variable is a specific audio device to open when the "default" audio device is used.</para>
-/// <para>This hint will be ignored when opening the default playback device if <see cref="DefaultPlaybackAlsaAudioDeviceHint"/> is set, or when opening the default recording device if SDL_HINT_AUDIO_ALSA_DEFAULT_RECORDING_DEVICE is set.</para>
-/// <para>You can set this hint through the environment variable "SDL_AUDIO_ALSA_DEFAULT_DEVICE".</para>
+/// <para>This variable is a specific audio device to open for playback when the "default" audio device is used.</para>
+/// <para>If this hint isn't set, SDL will check <see cref="DefaultAlsaAudioDeviceHint"/> before choosing a reasonable default.</para>
+/// <para>You can set this hint through the environment variable "SDL_AUDIO_ALSA_DEFAULT_PLAYBACK_DEVICE".</para>
 /// </remarks>
-public class DefaultAlsaAudioDeviceHint : HintBase
+public class DefaultPlaybackAlsaAudioDeviceHint : HintBase
 {
-    private const string Hint = "SDL_AUDIO_ALSA_DEFAULT_DEVICE";
+    private const string Hint = "SDL_AUDIO_ALSA_DEFAULT_PLAYBACK_DEVICE";
 
     /// <summary>Gets or sets the value of the hint.</summary>
     /// <remarks>This hint should be set before an audio device is opened (<see cref="AudioSubsystem"/>.)</remarks>
