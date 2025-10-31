@@ -11,7 +11,10 @@ using Vmr.Sdl.NativeImports;
 namespace Vmr.Sdl.Hints;
 
 /// <summary>A variable to control whether the SDL activity is allowed to be re-created.</summary>
-/// <remarks>If this hint is true, the activity can be recreated on demand by the OS, and Java static data and C++ static data remain with their current values. If this hint is false, then SDL will call exit() when you return from your main function and the application will be terminated and then started fresh each time.</remarks>
+/// <remarks>
+/// <para>If this hint is true, the activity can be recreated on demand by the OS, and Java static data and C++ static data remain with their current values. If this hint is false, then SDL will call exit() when you return from your main function and the application will be terminated and then started fresh each time.</para>
+/// <para>You can set this hint through the environment variable "SDL_ANDROID_ALLOW_RECREATE_ACTIVITY" with the values "1" to enable or "0" to disable.</para>
+/// </remarks>
 public class AllowRecreateActivityAndroidHint : HintBase
 {
     private const string Hint = "SDL_ANDROID_ALLOW_RECREATE_ACTIVITY";

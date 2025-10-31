@@ -11,6 +11,7 @@ using Vmr.Sdl.NativeImports;
 namespace Vmr.Sdl.Hints;
 
 /// <summary>A variable to control whether the event loop will block itself when the app is paused.</summary>
+/// <remarks>You can set this hint through the environment variable "SDL_ANDROID_BLOCK_ON_PAUSE" with the values "1" to enable or "0" to disable.</remarks>
 public class BlockOnPauseAndroidHint : HintBase
 {
     private const string Hint = "SDL_ANDROID_BLOCK_ON_PAUSE";

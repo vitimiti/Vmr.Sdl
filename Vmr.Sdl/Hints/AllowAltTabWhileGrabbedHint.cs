@@ -11,7 +11,10 @@ using Vmr.Sdl.NativeImports;
 namespace Vmr.Sdl.Hints;
 
 /// <summary>Specify the behavior of Alt+Tab while the keyboard is grabbed.</summary>
-/// <remarks>By default, SDL emulates Alt+Tab functionality while the keyboard is grabbed and your window is full-screen. This prevents the user from getting stuck in your application if you've enabled keyboard grab.</remarks>
+/// <remarks>
+/// <para>By default, SDL emulates Alt+Tab functionality while the keyboard is grabbed and your window is full-screen. This prevents the user from getting stuck in your application if you've enabled keyboard grab.</para>
+/// <para>You can set this hint through the environment variable "SDL_ALLOW_ALT_TAB_WHILE_GRABBED" with the values "1" to enable or "0" to disable.</para>
+/// </remarks>
 public sealed class AllowAltTabWhileGrabbedHint : HintBase
 {
     private const string Hint = "SDL_ALLOW_ALT_TAB_WHILE_GRABBED";
