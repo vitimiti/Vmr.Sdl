@@ -7,6 +7,7 @@
 // -----------------------------------------------------------------------
 
 using Vmr.Sdl.NativeImports;
+using Vmr.Sdl.Subsystems;
 
 namespace Vmr.Sdl.Hints;
 
@@ -26,7 +27,7 @@ public class LowLatencyAudioAndroidHint : HintBase
     /// <item><see langword="true"/>: Low latency audio is not enabled.</item>
     /// <item><see langword="false"/> (Default): Low latency audio is enabled.</item>
     /// </list>
-    /// This hint can be set any time.
+    /// This hint should be set before SDL audio is initialized (<see cref="AudioSubsystem"/>).
     /// </remarks>
     public static bool Value
     {

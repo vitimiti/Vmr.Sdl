@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="BlockOnPauseAndroidHint.cs" company="Vmr.Sdl">
+// <copyright file="TrapBackButtonAndroidHint.cs" company="Vmr.Sdl">
 // Copyright (c) Vmr.Sdl. All rights reserved.
 // Licensed under the MIT license.
 // See LICENSE.md for more information.
@@ -7,23 +7,31 @@
 // -----------------------------------------------------------------------
 
 using Vmr.Sdl.NativeImports;
+using Vmr.Sdl.Subsystems;
 
 namespace Vmr.Sdl.Hints;
 
-/// <summary>A variable to control whether the event loop will block itself when the app is paused.</summary>
-/// <remarks>You can set this hint through the environment variable "SDL_ANDROID_BLOCK_ON_PAUSE" with the values "1" to enable or "0" to disable.</remarks>
-public class BlockOnPauseAndroidHint : HintBase
+// TODO: Change SDL_EVENT_KEY_DOWN to our object docs
+// TODO: Change SDL_EVENT_KEY_UP to our object docs
+// TODO: Change SDL_SCANCODE_AC_BACK to our object docs
+
+/// <summary>A variable to control whether we trap the Android back button to handle it manually.</summary>
+/// <remarks>
+/// <para>This is necessary for the right mouse button to work on some Android devices, or to be able to trap the back button for use in your code reliably. If this hint is true, the back button will show up as an SDL_EVENT_KEY_DOWN / SDL_EVENT_KEY_UP pair with a keycode of SDL_SCANCODE_AC_BACK.</para>
+/// <para>You can set this hint through the environment variable "SDL_ANDROID_TRAP_BACK_BUTTON" with the values "1" to enable or "0" to disable.</para>
+/// </remarks>
+public class TrapBackButtonAndroidHint : HintBase
 {
-    private const string Hint = "SDL_ANDROID_BLOCK_ON_PAUSE";
+    private const string Hint = "SDL_ANDROID_TRAP_BACK_BUTTON";
 
     /// <summary>Gets or sets a value indicating whether the hint is enabled or not.</summary>
     /// <remarks>
     /// The variable can be set to the following values:
     /// <list type="bullet">
-    /// <item><see langword="true"/>: Non blocking.</item>
-    /// <item><see langword="false"/> (Default): Blocking.</item>
+    /// <item><see langword="true"/> (Default): Back button will be handled as usual for the system.</item>
+    /// <item><see langword="false"/>: Back button will be trapped, allowing you to handle the key press manually. (This will also let right mouse click work on systems where the right mouse button functions as back.)</item>
     /// </list>
-    /// This hint should be set before SDL is initialized (<see cref="Application"/>).
+    /// This hint should be set before SDL audio is initialized (<see cref="AudioSubsystem"/>).
     /// </remarks>
     public static bool Value
     {
