@@ -17,6 +17,8 @@ namespace Vmr.Sdl.Hints;
 /// <para>If this hint isn't set, SDL will check <see cref="DefaultAlsaAudioDeviceHint"/> before choosing a reasonable default.</para>
 /// <para>You can set this hint through the environment variable "SDL_AUDIO_ALSA_DEFAULT_PLAYBACK_DEVICE".</para>
 /// </remarks>
+/// <seealso cref="DefaultAlsaAudioDeviceHint"/>
+/// <seealso cref="DefaultRecordingAlsaAudioDeviceHint"/>
 public class DefaultPlaybackAlsaAudioDeviceHint : HintBase
 {
     private const string Hint = "SDL_AUDIO_ALSA_DEFAULT_PLAYBACK_DEVICE";
