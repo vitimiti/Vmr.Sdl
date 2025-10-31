@@ -11,6 +11,8 @@ using Vmr.Sdl.Subsystems;
 
 namespace Vmr.Sdl.Hints;
 
+// TODO: Change SDL_SetWindowIcon to our object docs
+
 /// <summary>Specify an application icon name for an audio device.</summary>
 /// <remarks>
 /// <para>Some audio backends (such as Pulseaudio and Pipewire) allow you to set an XDG icon name for your application. Among other things, this icon might show up in a system control panel that lets the user adjust the volume on specific audio streams instead of using one giant master volume slider. Note that this is unrelated to the icon used by the windowing system, which may be set with SDL_SetWindowIcon (or via desktop file on Wayland.)</para>
