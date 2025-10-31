@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="AppIdHint.cs" company="Vmr.Sdl">
+// <copyright file="AudioDeviceAppIconNameHint.cs" company="Vmr.Sdl">
 // Copyright (c) Vmr.Sdl. All rights reserved.
 // Licensed under the MIT license.
 // See LICENSE.md for more information.
@@ -7,21 +7,24 @@
 // -----------------------------------------------------------------------
 
 using Vmr.Sdl.NativeImports;
+using Vmr.Sdl.Subsystems;
 
 namespace Vmr.Sdl.Hints;
 
-/// <summary>A variable setting the app ID string.</summary>
+/// <summary>Specify an application icon name for an audio device.</summary>
 /// <remarks>
-/// <para>This string is used by desktop compositors to identify and group windows together, as well as match applications with associated desktop settings and icons.</para>
-/// <para>This will override <see cref="ApplicationMetadata.Identifier"/>, if set by the application.</para>
-/// <para>You can set this hint through the environment variable "SDL_APP_ID".</para>
+/// <para>Some audio backends (such as Pulseaudio and Pipewire) allow you to set an XDG icon name for your application. Among other things, this icon might show up in a system control panel that lets the user adjust the volume on specific audio streams instead of using one giant master volume slider. Note that this is unrelated to the icon used by the windowing system, which may be set with SDL_SetWindowIcon (or via desktop file on Wayland.)</para>
+/// <para>You can set this hint through the environment variable "SDL_AUDIO_DEVICE_APP_ICON_NAME".</para>
 /// </remarks>
-public class AppIdHint : HintBase
+public class AudioDeviceAppIconNameHint : HintBase
 {
-    private const string Hint = "SDL_APP_ID";
+    private const string Hint = "SDL_AUDIO_DEVICE_APP_ICON_NAME";
 
     /// <summary>Gets or sets the value of the hint.</summary>
-    /// <remarks>This hint should be set before SDL is initialized (<see cref="Application"/>.)</remarks>
+    /// <remarks>
+    /// <para>Setting this to <see cref="string.Empty"/> or leaving it unset will have SDL use a reasonable default, "applications-games", which is likely to be installed. See <see href="https://specifications.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html"/> and <see href="https://specifications.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html"/> for the relevant XDG icon specs.</para>
+    /// <para>This hint should be set before an audio device is opened (see <see cref="AudioSubsystem"/>.)</para>
+    /// </remarks>
     public static string? Value
     {
         get => NativeSdl.GetHint(Hint);
