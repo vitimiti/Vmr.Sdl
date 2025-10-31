@@ -31,7 +31,7 @@ public class TrapBackButtonAndroidHint : HintBase
     /// <item><see langword="true"/> (Default): Back button will be handled as usual for the system.</item>
     /// <item><see langword="false"/>: Back button will be trapped, allowing you to handle the key press manually. (This will also let right mouse click work on systems where the right mouse button functions as back.)</item>
     /// </list>
-    /// This hint should be set before SDL audio is initialized (<see cref="AudioSubsystem"/>).
+    /// This hint can be set anytime.
     /// </remarks>
     public static bool Value
     {
