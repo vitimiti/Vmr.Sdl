@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="SdlStream.cs" company="Vmr.Sdl">
+// <copyright file="IoStream.cs" company="Vmr.Sdl">
 // Copyright (c) Vmr.Sdl. All rights reserved.
 // Licensed under the MIT license.
 // See LICENSE.md for more information.
@@ -14,19 +14,19 @@ using Vmr.Sdl.Properties;
 namespace Vmr.Sdl.Io;
 
 /// <summary>Represents a stream wrapper for SDL I/O operations, providing <see cref="Stream"/> compatibility for SDL-based file and memory operations.</summary>
-public class SdlStream : Stream
+public class IoStream : Stream
 {
     private readonly NativeSdl.IoStream _baseStream;
 
     private bool _disposed;
 
-    /// <summary>Initializes a new instance of the <see cref="SdlStream"/> class from a file path with specified mode and access.</summary>
+    /// <summary>Initializes a new instance of the <see cref="IoStream"/> class from a file path with specified mode and access.</summary>
     /// <param name="filePath">The path to the file to open.</param>
     /// <param name="mode">The file mode.</param>
     /// <param name="access">The file access permissions.</param>
     /// <param name="isBinaryFile">Whether to open the file in binary mode.</param>
     /// <exception cref="InvalidOperationException">Thrown when the SDL stream cannot be created from the file.</exception>
-    public SdlStream(string filePath, FileMode mode, FileAccess access, bool isBinaryFile = false)
+    public IoStream(string filePath, FileMode mode, FileAccess access, bool isBinaryFile = false)
     {
         _baseStream = NativeSdl.IoFromFile(filePath, NativeSdl.ModeAndAccessToSdlMode(mode, access, isBinaryFile));
         if (_baseStream.IsInvalid)
@@ -37,10 +37,10 @@ public class SdlStream : Stream
         }
     }
 
-    /// <summary>Initializes a new instance of the <see cref="SdlStream"/> class from a writable memory buffer.</summary>
+    /// <summary>Initializes a new instance of the <see cref="IoStream"/> class from a writable memory buffer.</summary>
     /// <param name="buffer">The memory buffer to wrap.</param>
     /// <exception cref="InvalidOperationException">Thrown when the SDL stream cannot be created from the memory buffer.</exception>
-    public SdlStream(Span<byte> buffer)
+    public IoStream(Span<byte> buffer)
     {
         _baseStream = NativeSdl.IoFromMem(buffer.ToArray(), new CULong((uint)buffer.Length));
         if (_baseStream.IsInvalid)
@@ -51,10 +51,10 @@ public class SdlStream : Stream
         }
     }
 
-    /// <summary>Initializes a new instance of the <see cref="SdlStream"/> class from a read-only memory buffer.</summary>
+    /// <summary>Initializes a new instance of the <see cref="IoStream"/> class from a read-only memory buffer.</summary>
     /// <param name="buffer">The read-only memory buffer to wrap.</param>
     /// <exception cref="InvalidOperationException">Thrown when the SDL stream cannot be created from the read-only memory buffer.</exception>
-    public SdlStream(ReadOnlySpan<byte> buffer)
+    public IoStream(ReadOnlySpan<byte> buffer)
     {
         _baseStream = NativeSdl.IoFromConstMem(buffer.ToArray(), new CULong((uint)buffer.Length));
         if (_baseStream.IsInvalid)
@@ -65,7 +65,7 @@ public class SdlStream : Stream
         }
     }
 
-    private SdlStream(NativeSdl.IoStream baseStream) => _baseStream = baseStream;
+    private IoStream(NativeSdl.IoStream baseStream) => _baseStream = baseStream;
 
     /// <summary>Gets the current I/O status of the stream.</summary>
     public IoStatus Status => NativeSdl.GetIoStatus(_baseStream);
@@ -102,17 +102,17 @@ public class SdlStream : Stream
         set => Seek(value, SeekOrigin.Begin);
     }
 
-    /// <summary>Creates a new <see cref="SdlStream"/> instance backed by dynamic memory that can grow as needed.</summary>
-    /// <returns>A new <see cref="SdlStream"/> instance backed by dynamic memory.</returns>
+    /// <summary>Creates a new <see cref="IoStream"/> instance backed by dynamic memory that can grow as needed.</summary>
+    /// <returns>A new <see cref="IoStream"/> instance backed by dynamic memory.</returns>
     /// <exception cref="InvalidOperationException">Thrown when the SDL stream cannot be created from dynamic memory.</exception>
-    public static SdlStream FromDynamicMemory()
+    public static IoStream FromDynamicMemory()
     {
         NativeSdl.IoStream stream = NativeSdl.IoFromDynamicMem();
         return stream.IsInvalid
             ? throw new InvalidOperationException(
                 $"Failed to create SDL stream from dynamic memory ({NativeSdl.GetError()})."
             )
-            : new SdlStream(stream);
+            : new IoStream(stream);
     }
 
     /// <summary>Loads the entire contents of a file into a <see cref="Span{T}"/> of bytes.</summary>

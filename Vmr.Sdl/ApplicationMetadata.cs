@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="SdlApplicationMetadata.cs" company="Vmr.Sdl">
+// <copyright file="ApplicationMetadata.cs" company="Vmr.Sdl">
 // Copyright (c) Vmr.Sdl. All rights reserved.
 // Licensed under the MIT license.
 // See LICENSE.md for more information.
@@ -13,19 +13,19 @@ namespace Vmr.Sdl;
 
 /// <summary>Represents metadata information for an SDL application, including properties such as name, version, identifier, creator, copyright, URL, and app type.</summary>
 /// <remarks>This class is used to interact with SDL and manage metadata through native SDL APIs. Updates to this metadata will reflect through SDL's native functionality.</remarks>
-public class SdlApplicationMetadata
+public class ApplicationMetadata
 {
-    /// <summary>Initializes a new instance of the <see cref="SdlApplicationMetadata"/> class.</summary>
-    /// <remarks>This constructor is used to initialize an instance of the <see cref="SdlApplicationMetadata"/> class with default values.</remarks>
-    public SdlApplicationMetadata() { }
+    /// <summary>Initializes a new instance of the <see cref="ApplicationMetadata"/> class.</summary>
+    /// <remarks>This constructor is used to initialize an instance of the <see cref="ApplicationMetadata"/> class with default values.</remarks>
+    public ApplicationMetadata() { }
 
-    /// <summary>Initializes a new instance of the <see cref="SdlApplicationMetadata"/> class with the specified metadata.</summary>
+    /// <summary>Initializes a new instance of the <see cref="ApplicationMetadata"/> class with the specified metadata.</summary>
     /// <param name="name">The name of the application.</param>
     /// <param name="version">The version of the application.</param>
     /// <param name="appIdentifier">The identifier of the application.</param>
-    /// <remarks>This constructor is used to initialize an instance of the <see cref="SdlApplicationMetadata"/> class with the specified metadata.</remarks>
+    /// <remarks>This constructor is used to initialize an instance of the <see cref="ApplicationMetadata"/> class with the specified metadata.</remarks>
     /// <exception cref="InvalidOperationException">When the SDL application metadata failed to be set.</exception>
-    public SdlApplicationMetadata(string? name, Version? version, string? appIdentifier)
+    public ApplicationMetadata(string? name, Version? version, string? appIdentifier)
     {
         if (!NativeSdl.SetAppMetadata(name, version?.ToString(), appIdentifier))
         {

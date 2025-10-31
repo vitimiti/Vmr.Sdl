@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="SdlApplication.cs" company="Vmr.Sdl">
+// <copyright file="Application.cs" company="Vmr.Sdl">
 // Copyright (c) Vmr.Sdl. All rights reserved.
 // Licensed under the MIT license.
 // See LICENSE.md for more information.
@@ -12,8 +12,8 @@ using Vmr.Sdl.Subsystems;
 namespace Vmr.Sdl;
 
 /// <summary>Represents the main application class for initializing and managing various SDL subsystems. This class provides access to multiple subsystems and handles their lifecycle.</summary>
-/// <remarks>SdlApplication serves as an entry point for accessing and working with SDL subsystems, such as audio, video, input devices, and sensors. The class ensures proper initialization and disposal of subsystems, and it disposes of unmanaged resources associated with SDL upon completion.</remarks>
-public class SdlApplication : IDisposable
+/// <remarks>Application serves as an entry point for accessing and working with SDL subsystems, such as audio, video, input devices, and sensors. The class ensures proper initialization and disposal of subsystems, and it disposes of unmanaged resources associated with SDL upon completion.</remarks>
+public class Application : IDisposable
 {
     /// <summary>Gets access to the SDL event processing functionality through an instance of <see cref="EventPump"/>.</summary>
     /// <remarks>The EventPump property creates and returns an instance of the <see cref="EventPump"/> class, which serves as a mechanism for polling and processing events from the SDL event queue. Event handling is essential for interacting with user inputs and managing application-level events within an SDL-based environment.</remarks>
@@ -38,7 +38,7 @@ public class SdlApplication : IDisposable
     }
 
     /// <summary>Gets access to the SDL camera subsystem functionality through an instance of <see cref="CameraSubsystem"/>.</summary>
-    /// <remarks>The CameraSubsystem property creates and returns an instance of the <see cref="CameraSubsystem"/> class, which allows for initializing and managing SDL's camera-related functionality. Proper initialization of the camera subsystem is required before its use, and it is managed through the lifecycle of the <see cref="SdlApplication"/> instance.</remarks>
+    /// <remarks>The CameraSubsystem property creates and returns an instance of the <see cref="CameraSubsystem"/> class, which allows for initializing and managing SDL's camera-related functionality. Proper initialization of the camera subsystem is required before its use, and it is managed through the lifecycle of the <see cref="Application"/> instance.</remarks>
     public CameraSubsystem CameraSubsystem
     {
         get
@@ -60,7 +60,7 @@ public class SdlApplication : IDisposable
     }
 
     /// <summary>Gets access to the SDL haptic subsystem functionality through an instance of <see cref="HapticSubsystem"/>.</summary>
-    /// <remarks>The HapticSubsystem property provides the ability to initialize and manage haptic feedback functionality within an SDL application. It ensures proper setup and disposal of resources related to haptic devices and operations. This subsystem must be accessed via the <see cref="SdlApplication"/> class, and it facilitates interaction with the haptic features provided by SDL.</remarks>
+    /// <remarks>The HapticSubsystem property provides the ability to initialize and manage haptic feedback functionality within an SDL application. It ensures proper setup and disposal of resources related to haptic devices and operations. This subsystem must be accessed via the <see cref="Application"/> class, and it facilitates interaction with the haptic features provided by SDL.</remarks>
     public HapticSubsystem HapticSubsystem
     {
         get
@@ -110,10 +110,10 @@ public class SdlApplication : IDisposable
         GC.SuppressFinalize(this);
     }
 
-    /// <summary>Finalizes an instance of the <see cref="SdlApplication"/> class.</summary>
-    ~SdlApplication() => Dispose(false);
+    /// <summary>Finalizes an instance of the <see cref="Application"/> class.</summary>
+    ~Application() => Dispose(false);
 
-    /// <summary>Releases all resources used by the <see cref="SdlApplication"/> instance and its subsystems.</summary>
+    /// <summary>Releases all resources used by the <see cref="Application"/> instance and its subsystems.</summary>
     /// <param name="disposing">A boolean value indicating whether to release both managed and unmanaged resources (<see langword="true"/>) or only managed resources (<see langword="false"/>).</param>
     protected virtual void Dispose(bool disposing)
     {

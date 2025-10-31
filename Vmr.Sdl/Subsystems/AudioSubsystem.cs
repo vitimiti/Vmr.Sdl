@@ -11,7 +11,7 @@ using Vmr.Sdl.NativeImports;
 namespace Vmr.Sdl.Subsystems;
 
 /// <summary>Represents the audio subsystem of an SDL application, enabling initialization and management of audio-related functionality.</summary>
-/// <remarks>This subsystem must be initialized before usage. Initialization is performed when the <see cref="AudioSubsystem"/> is accessed through the <see cref="SdlApplication"/> class. The subsystem ensures proper setup of SDL's audio functionality. Upon disposal, it releases resources associated with the audio subsystem.</remarks>
+/// <remarks>This subsystem must be initialized before usage. Initialization is performed when the <see cref="AudioSubsystem"/> is accessed through the <see cref="Application"/> class. The subsystem ensures proper setup of SDL's audio functionality. Upon disposal, it releases resources associated with the audio subsystem.</remarks>
 public sealed class AudioSubsystem : IDisposable
 {
     internal AudioSubsystem()

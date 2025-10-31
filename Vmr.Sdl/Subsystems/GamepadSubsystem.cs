@@ -11,7 +11,7 @@ using Vmr.Sdl.NativeImports;
 namespace Vmr.Sdl.Subsystems;
 
 /// <summary>Represents the gamepad subsystem of an SDL application, enabling initialization and management of gamepad-related functionality.</summary>
-/// <remarks>This subsystem must be initialized before usage. Initialization is performed when the <see cref="GamepadSubsystem"/> is accessed through the <see cref="SdlApplication"/> class. The subsystem ensures proper setup of SDL's gamepad functionality. Upon disposal, it releases resources associated with the gamepad subsystem.</remarks>
+/// <remarks>This subsystem must be initialized before usage. Initialization is performed when the <see cref="GamepadSubsystem"/> is accessed through the <see cref="Application"/> class. The subsystem ensures proper setup of SDL's gamepad functionality. Upon disposal, it releases resources associated with the gamepad subsystem.</remarks>
 public sealed class GamepadSubsystem : IDisposable
 {
     internal GamepadSubsystem()

@@ -11,7 +11,7 @@ using Vmr.Sdl.NativeImports;
 namespace Vmr.Sdl.Subsystems;
 
 /// <summary>Represents the events subsystem of an SDL application, enabling initialization and management of events-related functionality.</summary>
-/// <remarks>This subsystem must be initialized before usage. Initialization is performed when the <see cref="EventPump"/> is accessed through the <see cref="SdlApplication"/> class. The subsystem ensures proper setup of SDL's events functionality. Upon disposal, it releases resources associated with the events subsystem. Only ONE event pump will be initialized at any time.</remarks>
+/// <remarks>This subsystem must be initialized before usage. Initialization is performed when the <see cref="EventPump"/> is accessed through the <see cref="Application"/> class. The subsystem ensures proper setup of SDL's events functionality. Upon disposal, it releases resources associated with the events subsystem. Only ONE event pump will be initialized at any time.</remarks>
 public sealed class EventPump : IDisposable
 {
     internal EventPump()

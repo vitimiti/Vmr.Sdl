@@ -11,7 +11,7 @@ using Vmr.Sdl.NativeImports;
 namespace Vmr.Sdl.Subsystems;
 
 /// <summary>Represents the sensor subsystem of an SDL application, enabling initialization and management of sensor-related functionality.</summary>
-/// <remarks>This subsystem must be initialized before usage. Initialization is performed when the <see cref="SensorSubsystem"/> is accessed through the <see cref="SdlApplication"/> class. The subsystem ensures proper setup of SDL's sensor functionality. Upon disposal, it releases resources associated with the sensor subsystem.</remarks>
+/// <remarks>This subsystem must be initialized before usage. Initialization is performed when the <see cref="SensorSubsystem"/> is accessed through the <see cref="Application"/> class. The subsystem ensures proper setup of SDL's sensor functionality. Upon disposal, it releases resources associated with the sensor subsystem.</remarks>
 public sealed class SensorSubsystem : IDisposable
 {
     internal SensorSubsystem()

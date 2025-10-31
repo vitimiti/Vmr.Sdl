@@ -11,7 +11,7 @@ using Vmr.Sdl.NativeImports;
 namespace Vmr.Sdl.Subsystems;
 
 /// <summary>Represents the video subsystem of an SDL application, enabling initialization and management of video-related functionality.</summary>
-/// <remarks>This subsystem must be initialized before usage. Initialization is performed when the <see cref="VideoSubsystem"/> is accessed through the <see cref="SdlApplication"/> class. The subsystem ensures proper setup of SDL's video functionality. Upon disposal, it releases resources associated with the video subsystem.</remarks>
+/// <remarks>This subsystem must be initialized before usage. Initialization is performed when the <see cref="VideoSubsystem"/> is accessed through the <see cref="Application"/> class. The subsystem ensures proper setup of SDL's video functionality. Upon disposal, it releases resources associated with the video subsystem.</remarks>
 public sealed class VideoSubsystem : IDisposable
 {
     internal VideoSubsystem()

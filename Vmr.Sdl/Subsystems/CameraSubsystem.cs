@@ -11,7 +11,7 @@ using Vmr.Sdl.NativeImports;
 namespace Vmr.Sdl.Subsystems;
 
 /// <summary>Represents the camera subsystem of an SDL application, enabling initialization and management of camera-related functionality.</summary>
-/// <remarks>This subsystem must be initialized before usage. Initialization is performed when the <see cref="CameraSubsystem"/> is accessed through the <see cref="SdlApplication"/> class. The subsystem ensures proper setup of SDL's camera functionality. Upon disposal, it releases resources associated with the camera subsystem.</remarks>
+/// <remarks>This subsystem must be initialized before usage. Initialization is performed when the <see cref="CameraSubsystem"/> is accessed through the <see cref="Application"/> class. The subsystem ensures proper setup of SDL's camera functionality. Upon disposal, it releases resources associated with the camera subsystem.</remarks>
 public sealed class CameraSubsystem : IDisposable
 {
     internal CameraSubsystem()
