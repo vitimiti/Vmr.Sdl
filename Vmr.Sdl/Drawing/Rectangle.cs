@@ -46,7 +46,7 @@ public record Rectangle(int X, int Y, int Width, int Height)
     public Rectangle GetIntersection([NotNull] Rectangle other) =>
         !NativeSdl.GetRectIntersection(this, other, out Rectangle result)
             ? throw new InvalidOperationException(
-                $"Unable to get the intersection between {this} and {other} ({NativeSdl.GetError()})."
+                $"Unable to get the intersection between {this} and {other} ({NativeSdl.GetError()}.)"
             )
             : result;
 
@@ -56,7 +56,7 @@ public record Rectangle(int X, int Y, int Width, int Height)
     public Rectangle GetUnion([NotNull] Rectangle other) =>
         !NativeSdl.GetRectUnion(this, other, out Rectangle result)
             ? throw new InvalidOperationException(
-                $"Unable to get the union between {this} and {other} ({NativeSdl.GetError()})."
+                $"Unable to get the union between {this} and {other} ({NativeSdl.GetError()}.)"
             )
             : result;
 
@@ -77,7 +77,7 @@ public record Rectangle(int X, int Y, int Width, int Height)
 
         return !NativeSdl.GetRectAndLineIntersection(this, ref x1, ref y1, ref x2, ref y2)
             ? throw new InvalidOperationException(
-                $"Unable to get the line {line} intersection for the rectangle {this} ({NativeSdl.GetError()})."
+                $"Unable to get the line {line} intersection for the rectangle {this} ({NativeSdl.GetError()}.)"
             )
             : (new Point(x1, y1), new Point(x2, y2));
     }

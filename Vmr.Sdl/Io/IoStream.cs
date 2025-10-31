@@ -32,7 +32,7 @@ public class IoStream : Stream
         if (_baseStream.IsInvalid)
         {
             throw new InvalidOperationException(
-                $"Failed to create SDL stream from file \"{filePath}\" in {mode} mode and with {access} access ({NativeSdl.GetError()})."
+                $"Failed to create SDL stream from file \"{filePath}\" in {mode} mode and with {access} access ({NativeSdl.GetError()}.)"
             );
         }
     }
@@ -46,7 +46,7 @@ public class IoStream : Stream
         if (_baseStream.IsInvalid)
         {
             throw new InvalidOperationException(
-                $"Failed to create SDL stream from memory buffer ({NativeSdl.GetError()})."
+                $"Failed to create SDL stream from memory buffer ({NativeSdl.GetError()}.)"
             );
         }
     }
@@ -60,7 +60,7 @@ public class IoStream : Stream
         if (_baseStream.IsInvalid)
         {
             throw new InvalidOperationException(
-                $"Failed to create SDL stream from read-only memory buffer ({NativeSdl.GetError()})."
+                $"Failed to create SDL stream from read-only memory buffer ({NativeSdl.GetError()}.)"
             );
         }
     }
@@ -110,7 +110,7 @@ public class IoStream : Stream
         NativeSdl.IoStream stream = NativeSdl.IoFromDynamicMem();
         return stream.IsInvalid
             ? throw new InvalidOperationException(
-                $"Failed to create SDL stream from dynamic memory ({NativeSdl.GetError()})."
+                $"Failed to create SDL stream from dynamic memory ({NativeSdl.GetError()}.)"
             )
             : new IoStream(stream);
     }
@@ -127,7 +127,7 @@ public class IoStream : Stream
             if (buffer is null)
             {
                 throw new InvalidOperationException(
-                    $"Unable to load from the file \"{filePath}\" ({NativeSdl.GetError()})."
+                    $"Unable to load from the file \"{filePath}\" ({NativeSdl.GetError()}.)"
                 );
             }
 
@@ -150,7 +150,7 @@ public class IoStream : Stream
     {
         if (!NativeSdl.SaveFile(filePath, buffer.ToArray(), new CULong((uint)buffer.Length)))
         {
-            throw new InvalidOperationException($"Unable to save to the file \"{filePath}\" ({NativeSdl.GetError()}).");
+            throw new InvalidOperationException($"Unable to save to the file \"{filePath}\" ({NativeSdl.GetError()}.)");
         }
     }
 

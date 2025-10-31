@@ -33,7 +33,7 @@ public class PropertiesGroup : IDisposable
         _id = NativeSdl.CreateProperties();
         if (_id == NativeSdl.PropertiesId.Invalid)
         {
-            throw new InvalidOperationException($"Failed to create properties group ({NativeSdl.GetError()}).");
+            throw new InvalidOperationException($"Failed to create properties group ({NativeSdl.GetError()}.)");
         }
     }
 
@@ -41,7 +41,7 @@ public class PropertiesGroup : IDisposable
     {
         if (id == NativeSdl.PropertiesId.Invalid)
         {
-            throw new ArgumentException($"Invalid properties id ({NativeSdl.GetError()}).", nameof(id));
+            throw new ArgumentException($"Invalid properties id ({NativeSdl.GetError()}.)", nameof(id));
         }
 
         _isGlobal = isGlobal;
@@ -81,7 +81,7 @@ public class PropertiesGroup : IDisposable
         if (!NativeSdl.SetPointerProperty(_id, name, value))
         {
             throw new InvalidOperationException(
-                $"Failed to set property \"{name}\" to value {value:X16} ({NativeSdl.GetError()})."
+                $"Failed to set property \"{name}\" to value {value:X16} ({NativeSdl.GetError()}.)"
             );
         }
     }
@@ -98,7 +98,7 @@ public class PropertiesGroup : IDisposable
         if (!NativeSdl.SetStringProperty(_id, name, value))
         {
             throw new InvalidOperationException(
-                $"Failed to set property \"{name}\" to value \"{value}\" ({NativeSdl.GetError()})."
+                $"Failed to set property \"{name}\" to value \"{value}\" ({NativeSdl.GetError()}.)"
             );
         }
     }
@@ -115,7 +115,7 @@ public class PropertiesGroup : IDisposable
         if (!NativeSdl.SetNumberProperty(_id, name, value))
         {
             throw new InvalidOperationException(
-                $"Failed to set property \"{name}\" to value {value} ({NativeSdl.GetError()})."
+                $"Failed to set property \"{name}\" to value {value} ({NativeSdl.GetError()}.)"
             );
         }
     }
@@ -132,7 +132,7 @@ public class PropertiesGroup : IDisposable
         if (!NativeSdl.SetFloatProperty(_id, name, value))
         {
             throw new InvalidOperationException(
-                $"Failed to set property \"{name}\" to value {value:F4} ({NativeSdl.GetError()})."
+                $"Failed to set property \"{name}\" to value {value:F4} ({NativeSdl.GetError()}.)"
             );
         }
     }
@@ -149,7 +149,7 @@ public class PropertiesGroup : IDisposable
         if (!NativeSdl.SetBooleanProperty(_id, name, value))
         {
             throw new InvalidOperationException(
-                $"Failed to set property \"{name}\" to value \"{value}\" ({NativeSdl.GetError()})."
+                $"Failed to set property \"{name}\" to value \"{value}\" ({NativeSdl.GetError()}.)"
             );
         }
     }
@@ -168,7 +168,7 @@ public class PropertiesGroup : IDisposable
         if (!NativeSdl.LockProperties(_id))
         {
             throw new InvalidOperationException(
-                $"Failed to lock properties while getting pointer property \"{name}\" ({NativeSdl.GetError()})."
+                $"Failed to lock properties while getting pointer property \"{name}\" ({NativeSdl.GetError()}.)"
             );
         }
 

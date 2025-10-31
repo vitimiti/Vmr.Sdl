@@ -19,7 +19,7 @@ public sealed class JoystickSubsystem : IDisposable
         if (!NativeSdl.InitSubSystem(NativeSdl.InitFlags.Joystick))
         {
             throw new InvalidOperationException(
-                $"Unable to initialize the {nameof(JoystickSubsystem)} ({NativeSdl.GetError()})."
+                $"Unable to initialize the {nameof(JoystickSubsystem)} ({NativeSdl.GetError()}.)"
             );
         }
     }

@@ -35,7 +35,7 @@ public record FRectangle(float X, float Y, float Width, float Height)
     public FRectangle GetIntersection([NotNull] FRectangle other) =>
         !NativeSdl.GetRectIntersectionFloat(this, other, out FRectangle result)
             ? throw new InvalidOperationException(
-                $"Unable to get the intersection between {this} and {other} ({NativeSdl.GetError()})."
+                $"Unable to get the intersection between {this} and {other} ({NativeSdl.GetError()}.)"
             )
             : result;
 
@@ -45,7 +45,7 @@ public record FRectangle(float X, float Y, float Width, float Height)
     public FRectangle GetUnion([NotNull] FRectangle other) =>
         !NativeSdl.GetRectUnionFloat(this, other, out FRectangle result)
             ? throw new InvalidOperationException(
-                $"Unable to get the union between {this} and {other} ({NativeSdl.GetError()})."
+                $"Unable to get the union between {this} and {other} ({NativeSdl.GetError()}.)"
             )
             : result;
 
@@ -66,7 +66,7 @@ public record FRectangle(float X, float Y, float Width, float Height)
 
         return !NativeSdl.GetRectAndLineIntersectionFloat(this, ref x1, ref y1, ref x2, ref y2)
             ? throw new InvalidOperationException(
-                $"Unable to get the line {line} intersection for the rectangle {this} ({NativeSdl.GetError()})."
+                $"Unable to get the line {line} intersection for the rectangle {this} ({NativeSdl.GetError()}.)"
             )
             : (new FPoint(x1, y1), new FPoint(x2, y2));
     }

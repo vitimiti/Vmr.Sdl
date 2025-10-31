@@ -35,7 +35,7 @@ public abstract class HintBase
         if (!NativeSdl.SetHintWithPriority(name, value, priority))
         {
             throw new InvalidOperationException(
-                $"Unable to set the hint \"{name}\" to the value \"{value}\" with priority {priority} ({NativeSdl.GetError()})."
+                $"Unable to set the hint \"{name}\" to the value \"{value}\" with priority {priority} ({NativeSdl.GetError()}.)"
             );
         }
     }
@@ -58,7 +58,7 @@ public abstract class HintBase
             if (!NativeSdl.AddHintCallback(name, NativeSdl.HintCallbackPtr, CallbackHandle.AddrOfPinnedObject()))
             {
                 throw new InvalidOperationException(
-                    $"Unable to add callback to hint \"{name}\" ({NativeSdl.GetError()})."
+                    $"Unable to add callback to hint \"{name}\" ({NativeSdl.GetError()}.)"
                 );
             }
         }

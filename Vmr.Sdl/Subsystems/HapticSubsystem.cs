@@ -19,7 +19,7 @@ public sealed class HapticSubsystem : IDisposable
         if (!NativeSdl.InitSubSystem(NativeSdl.InitFlags.Haptic))
         {
             throw new InvalidOperationException(
-                $"Unable to initialize the {nameof(HapticSubsystem)} ({NativeSdl.GetError()})."
+                $"Unable to initialize the {nameof(HapticSubsystem)} ({NativeSdl.GetError()}.)"
             );
         }
     }

@@ -19,7 +19,7 @@ public sealed class GamepadSubsystem : IDisposable
         if (!NativeSdl.InitSubSystem(NativeSdl.InitFlags.Gamepad))
         {
             throw new InvalidOperationException(
-                $"Unable to initialize the {nameof(GamepadSubsystem)} ({NativeSdl.GetError()})."
+                $"Unable to initialize the {nameof(GamepadSubsystem)} ({NativeSdl.GetError()}.)"
             );
         }
     }

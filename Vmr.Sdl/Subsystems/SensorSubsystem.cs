@@ -19,7 +19,7 @@ public sealed class SensorSubsystem : IDisposable
         if (!NativeSdl.InitSubSystem(NativeSdl.InitFlags.Sensor))
         {
             throw new InvalidOperationException(
-                $"Unable to initialize the {nameof(SensorSubsystem)} ({NativeSdl.GetError()})."
+                $"Unable to initialize the {nameof(SensorSubsystem)} ({NativeSdl.GetError()}.)"
             );
         }
     }

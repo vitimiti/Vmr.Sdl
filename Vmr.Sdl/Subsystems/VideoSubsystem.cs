@@ -19,7 +19,7 @@ public sealed class VideoSubsystem : IDisposable
         if (!NativeSdl.InitSubSystem(NativeSdl.InitFlags.Video))
         {
             throw new InvalidOperationException(
-                $"Unable to initialize the {nameof(VideoSubsystem)} ({NativeSdl.GetError()})."
+                $"Unable to initialize the {nameof(VideoSubsystem)} ({NativeSdl.GetError()}.)"
             );
         }
     }

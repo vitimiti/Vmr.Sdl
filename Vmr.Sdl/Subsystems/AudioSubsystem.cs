@@ -19,7 +19,7 @@ public sealed class AudioSubsystem : IDisposable
         if (!NativeSdl.InitSubSystem(NativeSdl.InitFlags.Audio))
         {
             throw new InvalidOperationException(
-                $"Unable to initialize the {nameof(AudioSubsystem)} ({NativeSdl.GetError()})."
+                $"Unable to initialize the {nameof(AudioSubsystem)} ({NativeSdl.GetError()}.)"
             );
         }
     }

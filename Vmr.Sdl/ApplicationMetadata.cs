@@ -30,7 +30,7 @@ public class ApplicationMetadata
         if (!NativeSdl.SetAppMetadata(name, version?.ToString(), appIdentifier))
         {
             throw new InvalidOperationException(
-                $"Unable to set application metadata {{ {nameof(name)}: {name}, {nameof(version)}: {version}, {nameof(appIdentifier)}: {appIdentifier} }} ({NativeSdl.GetError()})."
+                $"Unable to set application metadata {{ {nameof(name)}: {name}, {nameof(version)}: {version}, {nameof(appIdentifier)}: {appIdentifier} }} ({NativeSdl.GetError()}.)"
             );
         }
     }
@@ -206,5 +206,5 @@ public class ApplicationMetadata
     }
 
     private static string FormErrorString(string name, string? value) =>
-        $"Unable to set the application property {name} to \"{value}\" ({NativeSdl.GetError()}).";
+        $"Unable to set the application property {name} to \"{value}\" ({NativeSdl.GetError()}.)";
 }

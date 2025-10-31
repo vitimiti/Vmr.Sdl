@@ -27,7 +27,7 @@ public sealed class EventPump : IDisposable
         if (!NativeSdl.InitSubSystem(NativeSdl.InitFlags.Events))
         {
             throw new InvalidOperationException(
-                $"Unable to initialize the {nameof(EventPump)} ({NativeSdl.GetError()})."
+                $"Unable to initialize the {nameof(EventPump)} ({NativeSdl.GetError()}.)"
             );
         }
     }

@@ -19,7 +19,7 @@ public sealed class CameraSubsystem : IDisposable
         if (!NativeSdl.InitSubSystem(NativeSdl.InitFlags.Camera))
         {
             throw new InvalidOperationException(
-                $"Unable to initialize the {nameof(CameraSubsystem)} ({NativeSdl.GetError()})."
+                $"Unable to initialize the {nameof(CameraSubsystem)} ({NativeSdl.GetError()}.)"
             );
         }
     }
