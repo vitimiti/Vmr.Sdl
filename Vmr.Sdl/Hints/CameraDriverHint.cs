@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="CameraDriver.cs" company="Vmr.Sdl">
+// <copyright file="CameraDriverHint.cs" company="Vmr.Sdl">
 // Copyright (c) Vmr.Sdl. All rights reserved.
 // Licensed under the MIT license.
 // See LICENSE.md for more information.
@@ -15,7 +15,7 @@ namespace Vmr.Sdl.Hints;
 /// <para>By default, SDL will try all available camera backends in a reasonable order until it finds one that can work, but this hint allows the app or user to force a specific target, such as "directshow" if, say, you are on Windows Media Foundations but want to try DirectShow instead.</para>
 /// <para>You can set this hint through the environment variable "SDL_CAMERA_DRIVER".</para>
 /// </remarks>
-public class CameraDriver : HintBase
+public class CameraDriverHint : HintBase
 {
     private const string Hint = "SDL_CAMERA_DRIVER";
 
