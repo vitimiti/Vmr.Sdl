@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="AudioChannelsHint.cs" company="Vmr.Sdl">
+// <copyright file="AudioDiskTimeScale.cs" company="Vmr.Sdl">
 // Copyright (c) Vmr.Sdl. All rights reserved.
 // Licensed under the MIT license.
 // See LICENSE.md for more information.
@@ -12,21 +12,30 @@ using Vmr.Sdl.Subsystems;
 
 namespace Vmr.Sdl.Hints;
 
-/// <summary>A variable controlling the default audio channel count.</summary>
+/// <summary>A variable controlling the audio rate when using the disk audio driver.</summary>
 /// <remarks>
-/// <para>If the application doesn't specify the audio channel count when opening the device, this hint can be used to specify a default channel count that will be used. This defaults to "1" for recording and "2" for playback devices.</para>
-/// <para>You can set this hint through the environment variable "SDL_AUDIO_CHANNELS".</para>
+/// <para>The disk audio driver normally simulates real-time for the audio rate that was specified, but you can use this variable to adjust this rate higher or lower down to 0. The default value is "1.0".</para>
+/// <para>You can set this hint through the environment variable "SDL_AUDIO_DISK_TIMESCALE".</para>
 /// </remarks>
-public class AudioChannelsHint : HintBase
+public class AudioDiskTimeScale : HintBase
 {
-    private const string Hint = "SDL_AUDIO_CHANNELS";
+    private const string Hint = "SDL_AUDIO_DISK_TIMESCALE";
 
     /// <summary>Gets or sets the value of the hint.</summary>
-    /// <remarks>This hint should be set before an audio device is opened (see <see cref="AudioSubsystem"/>.)</remarks>
-    public static int Value
+    /// <remarks>This hint should be set before SDL is initialized (see <see cref="AudioSubsystem"/>.)</remarks>
+    public static float Value
     {
-        get => int.Parse(NativeSdl.GetHint(Hint) ?? "0", NumberStyles.Integer, CultureInfo.InvariantCulture);
-        set => SetHintValue(Hint, value.ToString(CultureInfo.InvariantCulture));
+        get => float.Parse(NativeSdl.GetHint(Hint) ?? "0", NumberStyles.Integer, CultureInfo.InvariantCulture);
+        set
+        {
+            var actualValue = value;
+            if (value < 0F)
+            {
+                actualValue = 0F;
+            }
+
+            SetHintValue(Hint, actualValue.ToString(CultureInfo.InvariantCulture));
+        }
     }
 
     /// <summary>Sets the hint with the given priority.</summary>
