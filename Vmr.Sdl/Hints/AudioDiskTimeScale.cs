@@ -25,7 +25,7 @@ public class AudioDiskTimeScale : HintBase
     /// <remarks>This hint should be set before SDL is initialized (see <see cref="AudioSubsystem"/>.)</remarks>
     public static float Value
     {
-        get => float.Parse(NativeSdl.GetHint(Hint) ?? "0", NumberStyles.Integer, CultureInfo.InvariantCulture);
+        get => float.Parse(NativeSdl.GetHint(Hint) ?? "1.0", NumberStyles.Integer, CultureInfo.InvariantCulture);
         set
         {
             var actualValue = value;

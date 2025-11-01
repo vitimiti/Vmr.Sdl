@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="AudioDummyTimeScale.cs" company="Vmr.Sdl">
+// <copyright file="AudioFrequencyHint.cs" company="Vmr.Sdl">
 // Copyright (c) Vmr.Sdl. All rights reserved.
 // Licensed under the MIT license.
 // See LICENSE.md for more information.
@@ -12,30 +12,21 @@ using Vmr.Sdl.Subsystems;
 
 namespace Vmr.Sdl.Hints;
 
-/// <summary>A variable controlling the audio rate when using the dummy audio driver.</summary>
+/// <summary>A variable controlling the default audio frequency.</summary>
 /// <remarks>
-/// <para>The dummy audio driver normally simulates real-time for the audio rate that was specified, but you can use this variable to adjust this rate higher or lower down to 0. The default value is "1.0".</para>
-/// <para>You can set this hint through the environment variable "SDL_AUDIO_DUMMY_TIMESCALE".</para>
+/// <para>If the application doesn't specify the audio frequency when opening the device, this hint can be used to specify a default frequency that will be used. This defaults to "44100".</para>
+/// <para>You can set this hint through the environment variable "SDL_AUDIO_CHANNELS".</para>
 /// </remarks>
-public class AudioDummyTimeScale : HintBase
+public class AudioFrequencyHint : HintBase
 {
-    private const string Hint = "SDL_AUDIO_DUMMY_TIMESCALE";
+    private const string Hint = "SDL_AUDIO_CHANNELS";
 
     /// <summary>Gets or sets the value of the hint.</summary>
-    /// <remarks>This hint should be set before SDL is initialized (see <see cref="AudioSubsystem"/>.)</remarks>
-    public static float Value
+    /// <remarks>This hint should be set before an audio device is opened (see <see cref="AudioSubsystem"/>.)</remarks>
+    public static int Value
     {
-        get => float.Parse(NativeSdl.GetHint(Hint) ?? "1.0", NumberStyles.Integer, CultureInfo.InvariantCulture);
-        set
-        {
-            var actualValue = value;
-            if (value < 0F)
-            {
-                actualValue = 0F;
-            }
-
-            SetHintValue(Hint, actualValue.ToString(CultureInfo.InvariantCulture));
-        }
+        get => int.Parse(NativeSdl.GetHint(Hint) ?? "44100", NumberStyles.Integer, CultureInfo.InvariantCulture);
+        set => SetHintValue(Hint, value.ToString(CultureInfo.InvariantCulture));
     }
 
     /// <summary>Sets the hint with the given priority.</summary>
