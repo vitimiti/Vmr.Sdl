@@ -24,8 +24,8 @@ public class AudioIncludeMonitorsHint : HintBase
     /// <remarks>
     /// The variable can be set to the following values:
     /// <list type="bullet">
-    /// <item><see langword="true"/> (Default): Audio monitor devices will be ignored.</item>
-    /// <item><see langword="false"/>: Audio monitor devices will show up in the device list.</item>
+    /// <item><see langword="true"/>: Audio monitor devices will show up in the device list.</item>
+    /// <item><see langword="false"/> (Default): Audio monitor devices will be ignored.</item>
     /// </list>
     /// This hint should be set before SDL is initialized (see <see cref="Application"/>.)
     /// </remarks>

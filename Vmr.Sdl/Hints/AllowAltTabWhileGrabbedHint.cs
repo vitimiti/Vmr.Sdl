@@ -23,8 +23,8 @@ public sealed class AllowAltTabWhileGrabbedHint : HintBase
     /// <remarks>
     /// The variable can be set to the following values:
     /// <list type="bullet">
-    /// <item><see langword="true"/>: SDL will not handle Alt+Tab. Your application is responsible for handling Alt+Tab while the keyboard is grabbed.</item>
-    /// <item><see langword="false"/> (Default): SDL will minimize your window when Alt+Tab is pressed.</item>
+    /// <item><see langword="true"/> (Default): SDL will minimize your window when Alt+Tab is pressed.</item>
+    /// <item><see langword="false"/>: SDL will not handle Alt+Tab. Your application is responsible for handling Alt+Tab while the keyboard is grabbed.</item>
     /// </list>
     /// This hint can be set any time.
     /// </remarks>

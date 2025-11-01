@@ -20,14 +20,14 @@ public sealed class RemoteAllowRotationAppleTvHint : HintBase
     /// <remarks>
     /// The variable can be set to the following values:
     /// <list type="bullet">
-    /// <item><see langword="true"/> (Default): Remote orientation does not affect joystick axes.</item>
-    /// <item><see langword="false"/>: Joystick axes are based on the orientation of the remote.</item>
+    /// <item><see langword="true"/>: Joystick axes are based on the orientation of the remote.</item>
+    /// <item><see langword="false"/> (Default): Remote orientation does not affect joystick axes.</item>
     /// </list>
     /// This hint can be set any time.
     /// </remarks>
     public static bool Value
     {
-        get => NativeSdl.GetHintBoolean(Hint, defaultValue: true);
+        get => NativeSdl.GetHintBoolean(Hint, defaultValue: false);
         set => SetHintValue(Hint, value ? "1" : "0");
     }
 

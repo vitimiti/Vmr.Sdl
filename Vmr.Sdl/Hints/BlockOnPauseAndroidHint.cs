@@ -20,8 +20,8 @@ public class BlockOnPauseAndroidHint : HintBase
     /// <remarks>
     /// The variable can be set to the following values:
     /// <list type="bullet">
-    /// <item><see langword="true"/>: Non blocking.</item>
-    /// <item><see langword="false"/> (Default): Blocking.</item>
+    /// <item><see langword="true"/> (Default): Blocking.</item>
+    /// <item><see langword="false"/>: Non blocking.</item>
     /// </list>
     /// This hint should be set before SDL is initialized (see <see cref="Application"/>.)
     /// </remarks>

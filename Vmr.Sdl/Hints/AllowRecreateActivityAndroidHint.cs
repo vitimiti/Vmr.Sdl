@@ -23,8 +23,8 @@ public class AllowRecreateActivityAndroidHint : HintBase
     /// <remarks>
     /// The variable can be set to the following values:
     /// <list type="bullet">
-    /// <item><see langword="true"/> (Default): The application starts fresh at each launch.</item>
-    /// <item><see langword="false"/>: The application activity can be recreated by the OS.</item>
+    /// <item><see langword="true"/>: The application activity can be recreated by the OS.</item>
+    /// <item><see langword="false"/> (Default): The application starts fresh at each launch.</item>
     /// </list>
     /// This hint can be set anytime.
     /// </remarks>

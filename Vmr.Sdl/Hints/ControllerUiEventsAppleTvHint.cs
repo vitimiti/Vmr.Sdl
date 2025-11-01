@@ -24,14 +24,14 @@ public sealed class ControllerUiEventsAppleTvHint : HintBase
     /// <remarks>
     /// The variable can be set to the following values:
     /// <list type="bullet">
-    /// <item><see langword="true"/> (Default): Controller input does not generate UI events.</item>
-    /// <item><see langword="false"/>: Controller input generates UI events.</item>
+    /// <item><see langword="true"/>: Controller input generates UI events.</item>
+    /// <item><see langword="false"/> (Default): Controller input does not generate UI events.</item>
     /// </list>
     /// This hint can be set any time.
     /// </remarks>
     public static bool Value
     {
-        get => NativeSdl.GetHintBoolean(Hint, defaultValue: true);
+        get => NativeSdl.GetHintBoolean(Hint, defaultValue: false);
         set => SetHintValue(Hint, value ? "1" : "0");
     }
 

@@ -24,8 +24,8 @@ public class LowLatencyAudioAndroidHint : HintBase
     /// <remarks>
     /// The variable can be set to the following values:
     /// <list type="bullet">
-    /// <item><see langword="true"/>: Low latency audio is not enabled.</item>
-    /// <item><see langword="false"/> (Default): Low latency audio is enabled.</item>
+    /// <item><see langword="true"/> (Default): Low latency audio is enabled.</item>
+    /// <item><see langword="false"/>: Low latency audio is not enabled.</item>
     /// </list>
     /// This hint should be set before SDL audio is initialized (see <see cref="AudioSubsystem"/>.)
     /// </remarks>
