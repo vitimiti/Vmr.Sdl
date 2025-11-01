@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------
-// <copyright file="AutoUpdateSensorsHint.cs" company="Vmr.Sdl">
+// <copyright file="SaveLegacyBmpFormatHint.cs" company="Vmr.Sdl">
 // Copyright (c) Vmr.Sdl. All rights reserved.
 // Licensed under the MIT license.
 // See LICENSE.md for more information.
@@ -10,26 +10,27 @@ using Vmr.Sdl.NativeImports;
 
 namespace Vmr.Sdl.Hints;
 
-/// <summary>A variable controlling whether SDL updates the sensor state when getting input events.</summary>
-/// <remarks>You can set this hint through the environment variable "SDL_AUTO_UPDATE_SENSORS" with the values "1" to enable or "0" to disable.</remarks>
-public class AutoUpdateSensorsHint : HintBase
+/// <summary>Prevent SDL from using version 4 of the bitmap header when saving BMPs.</summary>
+/// <remarks>
+/// <para>The bitmap header version 4 is required for proper alpha channel support and SDL will use it when required. Should this not be desired, this hint can force the use of the 40 byte header version which is supported everywhere.</para>
+/// <para>You can set this hint through the environment variable "SDL_BMP_SAVE_LEGACY_FORMAT" with the values "1" to enable or "0" to disable.</para>
+/// </remarks>
+public class SaveLegacyBmpFormatHint : HintBase
 {
-    private const string Hint = "SDL_AUTO_UPDATE_SENSORS";
-
-    // TODO: Change SDL_UpdateSensors to our object docs
+    private const string Hint = "SDL_BMP_SAVE_LEGACY_FORMAT";
 
     /// <summary>Gets or sets a value indicating whether the hint is enabled or not.</summary>
     /// <remarks>
     /// The variable can be set to the following values:
     /// <list type="bullet">
-    /// <item><see langword="true"/> (Default): SDL will automatically call SDL_UpdateSensors().</item>
-    /// <item><see langword="false"/>: You'll call SDL_UpdateSensors() manually.</item>
+    /// <item><see langword="true"/>: Surfaces with a colorkey or an alpha channel are saved to a 32-bit BMP file without an alpha mask. The alpha channel data will be in the file, but applications are going to ignore it.</item>
+    /// <item><see langword="false"/> (Default): Surfaces with a colorkey or an alpha channel are saved to a 32-bit BMP file with an alpha mask. SDL will use the bitmap header version 4 and set the alpha mask accordingly.</item>
     /// </list>
     /// This hint can be set anytime.
     /// </remarks>
     public static bool Value
     {
-        get => NativeSdl.GetHintBoolean(Hint, defaultValue: true);
+        get => NativeSdl.GetHintBoolean(Hint, defaultValue: false);
         set => SetHintValue(Hint, value ? "1" : "0");
     }
 

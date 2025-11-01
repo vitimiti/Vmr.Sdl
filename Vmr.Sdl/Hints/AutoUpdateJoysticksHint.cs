@@ -25,7 +25,7 @@ public class AutoUpdateJoysticksHint : HintBase
     /// <item><see langword="true"/> (Default): SDL will automatically call SDL_UpdateJoysticks().</item>
     /// <item><see langword="false"/>: You'll call SDL_UpdateJoysticks() manually.</item>
     /// </list>
-    /// This hint should be set before SDL is initialized (see <see cref="Application"/>.)
+    /// This hint can be set anytime.
     /// </remarks>
     public static bool Value
     {
